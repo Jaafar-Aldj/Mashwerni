@@ -12,11 +12,12 @@ import 'package:mashwerni/page/screen/auth/forgetpassword/verifycode.dart';
 import 'package:mashwerni/page/screen/language.dart';
 import 'package:mashwerni/page/screen/onboarding.dart';
 import 'package:mashwerni/test.dart';
+import 'package:mashwerni/testpage.dart';
 
 List<GetPage<dynamic>>? routes = [
   // OnBoarding
-  GetPage(name: "/", page: () => Language(), middlewares: [MyMiddleware()]),
-  // GetPage(name: "/", page: () => Test()),
+  // GetPage(name: "/", page: () => Language(), middlewares: [MyMiddleware()]),
+  GetPage(name: "/", page: () => TestPage()),
   GetPage(name: AppRoute.onBoarding, page: () => OnBoarding()),
   // Auth
   GetPage(name: AppRoute.signUp, page: () => SignUp()),
