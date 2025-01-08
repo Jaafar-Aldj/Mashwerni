@@ -8,4 +8,7 @@ class AppRoute {
   static String resetPassword = "/resetpassword";
   static String successResetPassword = "/sucessresetpassword";
   static String checkEmail = "/checkemail";
+
+  //  Home
+  static String home = "/home";
 }

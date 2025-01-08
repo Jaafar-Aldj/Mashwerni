@@ -12,8 +12,7 @@ abstract class CheckEmailController extends GetxController {
 class CheckEmailControllerImp extends CheckEmailController {
   StatusRequest? statusRequest;
   CheckEmailData checkEmailData = CheckEmailData(Get.find());
-  // late String verifyCode;
-  String? email = Get.arguments['email'];
+  late String email;
   @override
   checkEmail() {}
 
@@ -21,19 +20,24 @@ class CheckEmailControllerImp extends CheckEmailController {
   goToSuccessSignUp(String verifyCode) async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await checkEmailData.postData(email!, verifyCode);
+    var response = await checkEmailData.postData(email, verifyCode);
     print(response);
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         Get.offNamed(AppRoute.successSignUp);
       } else {
-        // Get.defaultDialog(
-        //     title: "warning".tr,
-        //     middleText: "phone number or email already exists".tr);
+        Get.defaultDialog(
+            title: "warning".tr, middleText: "verify code isn't correct".tr);
         statusRequest = StatusRequest.failure;
       }
-      update();
     }
+    update();
+  }
+
+  @override
+  void onInit() {
+    email = Get.arguments['email'];
+    super.onInit();
   }
 }

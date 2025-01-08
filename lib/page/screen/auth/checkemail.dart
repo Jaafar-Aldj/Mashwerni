@@ -14,6 +14,7 @@ class CheckEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     CheckEmailControllerImp controller = Get.put(CheckEmailControllerImp());
     return Scaffold(
       appBar: AppBar(

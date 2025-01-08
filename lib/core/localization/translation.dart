@@ -66,6 +66,9 @@ class MyTranslation extends Translations {
           "warning": "تنبيه",
           "phone number or email already exists":
               "رقم الهاتف او البريد الإلكتروني موجود مسبقاً",
+          "verify code isn't correct": "رمز التحقق غير صحيح",
+          "email or password not correct":
+              "البريد الإلكتروني او كلمة المرور غير صحيحة ",
         },
         "en": {
           "choose language": "Choose language",
@@ -130,6 +133,8 @@ class MyTranslation extends Translations {
           "warning": "Warning",
           "phone number or email already exists":
               "Phone number or Email already exists",
+          "verify code isn't correct": "Verify Code isn't correct",
+          "email or password not correct": "Email or Password not correct",
         },
       };
 }
