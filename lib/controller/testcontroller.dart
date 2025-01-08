@@ -13,7 +13,11 @@ class TestController extends GetxController {
     var response = await testData.getData();
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
-      data.add(response['data']);
+      if (response['status'] == "success") {
+        data.add(response['data']);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
     }
     update();
   }

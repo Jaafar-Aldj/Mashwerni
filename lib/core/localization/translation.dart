@@ -63,6 +63,9 @@ class MyTranslation extends Translations {
           "do you want to exit app?": "هل تريد الخروخ من التطبيق؟",
           "yes": "نعم",
           "no": "لا",
+          "warning": "تنبيه",
+          "phone number or email already exists":
+              "رقم الهاتف او البريد الإلكتروني موجود مسبقاً",
         },
         "en": {
           "choose language": "Choose language",
@@ -124,6 +127,9 @@ class MyTranslation extends Translations {
           "do you want to exit app?": "Do you want to exit app?",
           "yes": "Yes",
           "no": "No",
+          "warning": "Warning",
+          "phone number or email already exists":
+              "Phone number or Email already exists",
         },
       };
 }

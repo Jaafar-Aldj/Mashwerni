@@ -1,31 +1,39 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mashwerni/core/class/statusrequest.dart';
 import 'package:mashwerni/core/constant/routes.dart';
+import 'package:mashwerni/core/function/handlingdatacontroller.dart';
+import 'package:mashwerni/data/datasource/remote/auth/checkemail.dart';
 
 abstract class CheckEmailController extends GetxController {
   checkEmail();
-  goToSuccessSignUp();
+  goToSuccessSignUp(String verifyCode);
 }
 
 class CheckEmailControllerImp extends CheckEmailController {
-  late TextEditingController email;
+  StatusRequest? statusRequest;
+  CheckEmailData checkEmailData = CheckEmailData(Get.find());
+  // late String verifyCode;
+  String? email = Get.arguments['email'];
   @override
   checkEmail() {}
 
   @override
-  goToSuccessSignUp() {
-    Get.offNamed(AppRoute.successSignUp);
-  }
-
-  @override
-  void onInit() {
-    email = TextEditingController();
-    super.onInit();
-  }
-
-  @override
-  void dispose() {
-    email.dispose();
-    super.dispose();
+  goToSuccessSignUp(String verifyCode) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await checkEmailData.postData(email!, verifyCode);
+    print(response);
+    statusRequest = handlingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        Get.offNamed(AppRoute.successSignUp);
+      } else {
+        // Get.defaultDialog(
+        //     title: "warning".tr,
+        //     middleText: "phone number or email already exists".tr);
+        statusRequest = StatusRequest.failure;
+      }
+      update();
+    }
   }
 }

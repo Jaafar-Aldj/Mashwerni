@@ -7,17 +7,21 @@ import 'package:http/http.dart' as http;
 
 class Crud {
   Future<Either<StatusRequest, Map>> postData(String linkURL, Map data) async {
-    if (await checkInternet()) {
-      var response = await http.post(Uri.parse(linkURL), body: data);
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        Map responseBody = jsonDecode(response.body);
-        print(responseBody);
-        return right(responseBody);
+    try {
+      if (await checkInternet()) {
+        var response = await http.post(Uri.parse(linkURL), body: data);
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          Map responseBody = jsonDecode(response.body);
+          print(responseBody);
+          return Right(responseBody);
+        } else {
+          return Left(StatusRequest.serverFailure);
+        }
       } else {
-        return left(StatusRequest.serverFailure);
+        return Left(StatusRequest.offlinefailure);
       }
-    } else {
-      return left(StatusRequest.offlinefailure);
+    } catch (e) {
+      return Left(StatusRequest.serverException);
     }
   }
 }
