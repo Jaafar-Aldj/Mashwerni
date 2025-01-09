@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mashwerni/controller/auth/resetpasswordcontroller.dart';
+import 'package:lottie/lottie.dart';
+import 'package:mashwerni/controller/forgetpassword/resetpasswordcontroller.dart';
+import 'package:mashwerni/core/class/statusrequest.dart';
+import 'package:mashwerni/core/constant/imageasset.dart';
 import 'package:mashwerni/core/function/validinput.dart';
 import 'package:mashwerni/page/widget/auth/custombutton.dart';
 import 'package:mashwerni/page/widget/auth/customtextbody.dart';
@@ -12,8 +15,7 @@ class ResetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ResetPasswordControllerImp controller =
-        Get.put(ResetPasswordControllerImp());
+    Get.put(ResetPasswordControllerImp());
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -23,46 +25,64 @@ class ResetPassword extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-        child: Form(
-          key: controller.formState,
-          child: ListView(
-            children: [
-              SizedBox(height: 30),
-              CustomTextTitleAuth(title: "new password".tr),
-              SizedBox(height: 10),
-              CustomTextBodyAuth(bodyText: "please enter new password".tr),
-              SizedBox(height: 15),
-              CustomTextForm(
-                isNumber: false,
-                hintText: "enter your password".tr,
-                labelText: "new password".tr,
-                iconData: Icons.password_outlined,
-                myController: controller.password,
-                valid: (val) {
-                  return validInput(val!, 5, 30, "password");
-                },
-              ),
-              CustomTextForm(
-                isNumber: false,
-                hintText: "enter your password again".tr,
-                labelText: "confirm password".tr,
-                iconData: Icons.password_outlined,
-                myController: controller.rePassword,
-                valid: (val) {
-                  return validInput(val!, 5, 30, "password");
-                },
-              ),
-              CustomButtonAuth(
-                text: "save".tr,
-                onPressed: () {
-                  controller.goToSuccessResetPassword();
-                },
-              ),
-            ],
-          ),
-        ),
+      body: GetBuilder<ResetPasswordControllerImp>(
+        builder: (controller) =>
+            controller.statusRequest == StatusRequest.loading
+                ? Lottie.asset(AppImageAsset.loading)
+                : Container(
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                    child: Form(
+                      key: controller.formState,
+                      child: ListView(
+                        children: [
+                          SizedBox(height: 30),
+                          CustomTextTitleAuth(title: "new password".tr),
+                          SizedBox(height: 10),
+                          CustomTextBodyAuth(
+                              bodyText: "please enter new password".tr),
+                          SizedBox(height: 15),
+                          CustomTextForm(
+                            hideText: controller.isHidePassword,
+                            onTapIcon: () {
+                              controller.showPassword();
+                            },
+                            isNumber: false,
+                            hintText: "enter your password".tr,
+                            labelText: "password".tr,
+                            iconData: controller.isHidePassword == false
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            myController: controller.password,
+                            valid: (val) {
+                              return validInput(val!, 5, 30, "password");
+                            },
+                          ),
+                          CustomTextForm(
+                            hideText: controller.isHidePassword,
+                            onTapIcon: () {
+                              controller.showPassword();
+                            },
+                            isNumber: false,
+                            hintText: "enter your password again".tr,
+                            labelText: "confirm password".tr,
+                            iconData: controller.isHidePassword == false
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            myController: controller.rePassword,
+                            valid: (val) {
+                              return validInput(val!, 5, 30, "password");
+                            },
+                          ),
+                          CustomButtonAuth(
+                            text: "save".tr,
+                            onPressed: () {
+                              controller.goToSuccessResetPassword();
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
       ),
     );
   }

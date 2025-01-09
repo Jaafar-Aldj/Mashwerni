@@ -69,6 +69,10 @@ class MyTranslation extends Translations {
           "verify code isn't correct": "رمز التحقق غير صحيح",
           "email or password not correct":
               "البريد الإلكتروني او كلمة المرور غير صحيحة ",
+          "email not found": "البريد الإلكتروني غير موجود",
+          "password not match": "كلمة المرور غبر متطابقة",
+          "try again": "حاول مرة أخرى",
+          "sorry": "عذراً",
         },
         "en": {
           "choose language": "Choose language",
@@ -135,6 +139,10 @@ class MyTranslation extends Translations {
               "Phone number or Email already exists",
           "verify code isn't correct": "Verify Code isn't correct",
           "email or password not correct": "Email or Password not correct",
+          "email not found": "Email not found",
+          "password not match": "Password not match",
+          "try again": "Try Again",
+          "sorry": "Sorry",
         },
       };
 }

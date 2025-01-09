@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mashwerni/controller/auth/successresetpasswordcontroller.dart';
+import 'package:mashwerni/controller/forgetpassword/successresetpasswordcontroller.dart';
 import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/page/widget/auth/custombutton.dart';
 import 'package:mashwerni/page/widget/auth/customtextbody.dart';
