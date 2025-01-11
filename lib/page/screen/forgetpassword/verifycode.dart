@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:mashwerni/controller/auth/checkemailcontroller.dart';
+import 'package:mashwerni/controller/forgetpassword/verifycodecontroller.dart';
 import 'package:mashwerni/core/class/handlingdataview.dart';
 import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/page/widget/auth/customtextbody.dart';
 import 'package:mashwerni/page/widget/auth/customtexttitle.dart';
 
-class CheckEmail extends StatelessWidget {
-  const CheckEmail({super.key});
+class VerifyCode extends StatelessWidget {
+  const VerifyCode({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    CheckEmailControllerImp controller = Get.put(CheckEmailControllerImp());
+    Get.put(VerifyCodeControllerImp());
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -23,7 +22,7 @@ class CheckEmail extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
-      body: GetBuilder<CheckEmailControllerImp>(
+      body: GetBuilder<VerifyCodeControllerImp>(
         builder: (controller) => HandlingDataRequest(
           statusRequest: controller.statusRequest,
           widget: Container(
@@ -48,7 +47,7 @@ class CheckEmail extends StatelessWidget {
                   showFieldAsBox: true,
                   onCodeChanged: (String code) {},
                   onSubmit: (String verifyCode) {
-                    controller.goToSuccessSignUp(verifyCode);
+                    controller.goToResetPassword(verifyCode);
                   },
                 ),
               ],
