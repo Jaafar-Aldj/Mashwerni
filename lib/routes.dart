@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/core/middleware/mymiddleware.dart';

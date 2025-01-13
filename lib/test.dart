@@ -9,10 +9,10 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
+  // ignore: prefer_typing_uninitialized_variables
   var res;
   initialdata() async {
     res = await checkInternet();
-    print(res);
   }
 
   @override

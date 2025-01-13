@@ -20,7 +20,6 @@ class VerifyCodeControllerImp extends VerifyCodeController {
     update();
     var response =
         await verifyCodeForgetPasswordData.postData(email, verifyCode);
-    print(response);
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {

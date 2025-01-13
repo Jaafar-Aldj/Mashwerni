@@ -21,7 +21,6 @@ class CheckEmailControllerImp extends CheckEmailController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await checkEmailData.postData(email, verifyCode);
-    print(response);
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {

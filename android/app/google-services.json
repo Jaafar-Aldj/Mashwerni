@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "259396389556",
+    "project_id": "mashwerni",
+    "storage_bucket": "mashwerni.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259396389556:android:a35c6f68c0d6a637c225e1",
+        "android_client_info": {
+          "package_name": "com.three.eagles.mashwerni"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAemuW5saT585SbZzZLB18RNIaf7s5S3Bw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

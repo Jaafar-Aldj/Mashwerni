@@ -33,7 +33,6 @@ class ResetPasswordControllerImp extends ResetPasswordController {
       statusRequest = StatusRequest.loading;
       update();
       var response = await resetPasswordData.postData(email, password.text);
-      print(response);
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {

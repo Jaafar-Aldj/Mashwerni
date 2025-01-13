@@ -29,7 +29,6 @@ class SignUpControllerImp extends SignUpController {
       update();
       var response =
           await signUpData.postData(email.text, password.text, phone.text);
-      print(response);
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {

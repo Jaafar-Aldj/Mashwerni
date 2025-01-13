@@ -73,6 +73,7 @@ class MyTranslation extends Translations {
           "password not match": "كلمة المرور غبر متطابقة",
           "try again": "حاول مرة أخرى",
           "sorry": "عذراً",
+          "search for a trip": "ابحث عن رحلة",
         },
         "en": {
           "choose language": "Choose language",
@@ -143,6 +144,7 @@ class MyTranslation extends Translations {
           "password not match": "Password not match",
           "try again": "Try Again",
           "sorry": "Sorry",
+          "search for a trip": "Search for a trip",
         },
       };
 }

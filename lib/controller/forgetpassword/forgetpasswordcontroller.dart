@@ -22,7 +22,6 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
       statusRequest = StatusRequest.loading;
       update();
       var response = await checkEmailData.postData(email.text);
-      print(response);
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
