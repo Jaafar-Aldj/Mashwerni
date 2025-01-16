@@ -12,6 +12,7 @@ import 'package:mashwerni/page/screen/forgetpassword/successresetpassword.dart';
 import 'package:mashwerni/page/screen/auth/successsignup.dart';
 import 'package:mashwerni/page/screen/forgetpassword/verifycode.dart';
 import 'package:mashwerni/page/screen/home.dart';
+import 'package:mashwerni/page/screen/homescreen.dart';
 import 'package:mashwerni/page/screen/language.dart';
 import 'package:mashwerni/page/screen/onboarding.dart';
 import 'package:mashwerni/test.dart';
@@ -34,5 +35,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.checkEmail, page: () => CheckEmail()),
 
   // Home
-  GetPage(name: AppRoute.home, page: () => Home()),
+  GetPage(name: AppRoute.home, page: () => HomeScreen()),
 ];

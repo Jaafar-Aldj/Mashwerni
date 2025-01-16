@@ -1,87 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/controller/homecontroller.dart';
-import 'package:mashwerni/core/constant/color.dart';
+import 'package:mashwerni/core/class/handlingdataview.dart';
+import 'package:mashwerni/page/widget/home/customappbar.dart';
+import 'package:mashwerni/page/widget/home/customcategorieslist.dart';
+import 'package:mashwerni/page/widget/home/customhomecard.dart';
+import 'package:mashwerni/page/widget/home/customitemslist.dart';
+import 'package:mashwerni/page/widget/home/customtitlehome.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    HomeControllerImp controller = Get.put(HomeControllerImp());
-    return Scaffold(
-        body: ListView(
-      children: [
-        Container(
+    Get.put(HomeControllerImp());
+    return GetBuilder<HomeControllerImp>(
+      builder: (controller) => HandlingDataRequest(
+        statusRequest: controller.statusRequest,
+        widget: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
-          margin: EdgeInsets.only(top: 10),
-          child: Row(
+          child: ListView(
             children: [
-              Expanded(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "search for a trip".tr,
-                    hintStyle: context.textTheme.titleLarge,
-                    prefixIcon: Icon(Icons.search_outlined),
-                    prefixIconColor: AppColor.darkPrimary,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    filled: true,
-                    fillColor: AppColor.lightPrimary,
-                  ),
-                ),
+              CustomAppBar(
+                titleAppBar: "search for a trip".tr,
+                iconOnPressed: () {},
+                searchOnPressed: () {},
               ),
-              Container(
-                child: IconButton(
-                  color: AppColor.primary,
-                  iconSize: 35,
-                  icon: Icon(Icons.notifications_active_outlined),
-                  onPressed: () {},
-                ),
+              CustomHomeCard(
+                title: "summer suprise".tr,
+                body: "cashback 20%".tr,
               ),
+              CustomTitleHome(title: "categories".tr),
+              CustomCategoriesList(),
+              CustomTitleHome(title: "product for you".tr),
+              CustomItemsList(),
+              CustomTitleHome(title: "offers".tr),
+              CustomItemsList(),
             ],
           ),
         ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-          child: Stack(
-            children: [
-              Container(
-                alignment: Alignment.center,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: AppColor.darkPrimary,
-                ),
-                child: ListTile(
-                  title: Text(
-                    "summer suprise".tr,
-                    style: TextStyle(color: AppColor.textAndIcon, fontSize: 20),
-                  ),
-                  subtitle: Text(
-                    "cashback 20%".tr,
-                    style: TextStyle(color: AppColor.textAndIcon, fontSize: 25),
-                  ),
-                ),
-              ),
-              Positioned(
-                right: -20,
-                top: -20,
-                child: Container(
-                  height: 140,
-                  width: 140,
-                  decoration: BoxDecoration(
-                    color: AppColor.primary,
-                    borderRadius: BorderRadius.circular(140),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
-    ));
+      ),
+    );
   }
 }

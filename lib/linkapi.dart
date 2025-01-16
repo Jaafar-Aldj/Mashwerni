@@ -2,6 +2,11 @@ class AppLink {
   static const String server = "http://10.0.2.2/mashwerni";
   static const String test = "$server/test.php";
 
+  // Image
+  static const String imageStatic = "http://192.168.43.225/mashwerni/upload";
+  static const String imageCategories = "$imageStatic/categories";
+  static const String imageItems = "$imageStatic/items";
+
   // Auth
   static const String auth = "$server/auth";
   static const String signUp = "$auth/signup.php";
@@ -15,4 +20,7 @@ class AppLink {
   static const String resetPassword = "$forgetpassword/resetpassword.php";
   static const String verifyCodeForgetPassword =
       "$forgetpassword/verifycode.php";
+
+  // Home
+  static const String home = "$server/home/home.php";
 }

@@ -74,6 +74,8 @@ class MyTranslation extends Translations {
           "try again": "حاول مرة أخرى",
           "sorry": "عذراً",
           "search for a trip": "ابحث عن رحلة",
+          "offers": "العروض",
+          "categories": "الفئات",
         },
         "en": {
           "choose language": "Choose language",
@@ -145,6 +147,8 @@ class MyTranslation extends Translations {
           "try again": "Try Again",
           "sorry": "Sorry",
           "search for a trip": "Search for a trip",
+          "offers": "Offers",
+          "categories": "Categories",
         },
       };
 }
