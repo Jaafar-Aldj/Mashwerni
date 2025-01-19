@@ -1,15 +1,18 @@
 import 'package:get/get.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
+import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/core/function/handlingdatacontroller.dart';
 import 'package:mashwerni/core/service/services.dart';
 import 'package:mashwerni/data/datasource/remote/homedata.dart';
 
 abstract class HomeController extends GetxController {
   getData();
+  goToItems(List categories, int selectedCat);
 }
 
 class HomeControllerImp extends HomeController {
   MyServices myServices = Get.find();
+  late String lang;
   String? email;
   String? phone;
   int? id;
@@ -38,6 +41,7 @@ class HomeControllerImp extends HomeController {
     email = myServices.sharedPreferences.getString("email");
     phone = myServices.sharedPreferences.getString("phone");
     id = myServices.sharedPreferences.getInt("id");
+    lang = myServices.sharedPreferences.getString("lang")!;
   }
 
   @override
@@ -45,5 +49,13 @@ class HomeControllerImp extends HomeController {
     getData();
     initialData();
     super.onInit();
+  }
+
+  @override
+  goToItems(List categories, int selectedCat) {
+    Get.toNamed(AppRoute.items, arguments: {
+      "categories": categories,
+      "selectedCat": selectedCat,
+    });
   }
 }

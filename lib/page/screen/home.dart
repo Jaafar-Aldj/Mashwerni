@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/controller/homecontroller.dart';
 import 'package:mashwerni/core/class/handlingdataview.dart';
-import 'package:mashwerni/page/widget/home/customappbar.dart';
+import 'package:mashwerni/page/widget/customappbar.dart';
 import 'package:mashwerni/page/widget/home/customcategorieslist.dart';
 import 'package:mashwerni/page/widget/home/customhomecard.dart';
-import 'package:mashwerni/page/widget/home/customitemslist.dart';
+import 'package:mashwerni/page/widget/home/customitemslisthome.dart';
 import 'package:mashwerni/page/widget/home/customtitlehome.dart';
 
 class Home extends StatelessWidget {
@@ -32,10 +32,10 @@ class Home extends StatelessWidget {
               ),
               CustomTitleHome(title: "categories".tr),
               CustomCategoriesList(),
-              CustomTitleHome(title: "product for you".tr),
-              CustomItemsList(),
+              CustomTitleHome(title: "trips for you".tr),
+              CustomItemsListHome(),
               CustomTitleHome(title: "offers".tr),
-              CustomItemsList(),
+              CustomItemsListHome(),
             ],
           ),
         ),

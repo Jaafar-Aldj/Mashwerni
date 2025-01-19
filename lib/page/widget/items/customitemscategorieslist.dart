@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:mashwerni/controller/homecontroller.dart';
+import 'package:mashwerni/controller/itemscontroller.dart';
 import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/core/function/translatedatabase.dart';
 import 'package:mashwerni/data/model/categoriesmodel.dart';
-import 'package:mashwerni/linkapi.dart';
 
-class CustomCategoriesList extends GetView<HomeControllerImp> {
-  const CustomCategoriesList({super.key});
+class CustomItemsCategoriesList extends GetView<ItemsControllerImp> {
+  const CustomItemsCategoriesList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120,
+      height: 50,
       child: ListView.separated(
         separatorBuilder: (context, index) => SizedBox(width: 10),
         scrollDirection: Axis.horizontal,
@@ -29,7 +27,7 @@ class CustomCategoriesList extends GetView<HomeControllerImp> {
   }
 }
 
-class Categories extends GetView<HomeControllerImp> {
+class Categories extends GetView<ItemsControllerImp> {
   final CategoriesModel categoriesModel;
   final int catIndex;
   const Categories({
@@ -42,29 +40,27 @@ class Categories extends GetView<HomeControllerImp> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.goToItems(controller.categories, catIndex);
+        controller.changeCat(catIndex);
       },
-      child: Column(
-        children: [
-          Container(
+      child: Center(
+        child: GetBuilder<ItemsControllerImp>(
+          builder: (controller) => Container(
+            padding: EdgeInsets.only(bottom: 5),
             decoration: BoxDecoration(
-              color: AppColor.lightPrimary,
-              borderRadius: BorderRadius.circular(20),
+              border: Border(
+                bottom: BorderSide(
+                    width: 3,
+                    color: controller.selectedCat == catIndex
+                        ? AppColor.accent
+                        : AppColor.darkPrimary),
+              ),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            height: 70,
-            width: 70,
-            child: SvgPicture.network(
-              "${AppLink.imageCategories}/${categoriesModel.categoryImage}",
-              colorFilter:
-                  ColorFilter.mode(AppColor.darkPrimary, BlendMode.srcIn),
+            child: Text(
+              "${translateDataBase(categoriesModel.categoryNameAr, categoriesModel.categoryName)}",
+              style: TextStyle(fontSize: 20, color: AppColor.primaryText),
             ),
           ),
-          Text(
-            "${translateDataBase(categoriesModel.categoryNameAr, categoriesModel.categoryName)}",
-            style: TextStyle(fontSize: 14, color: AppColor.primaryText),
-          ),
-        ],
+        ),
       ),
     );
   }

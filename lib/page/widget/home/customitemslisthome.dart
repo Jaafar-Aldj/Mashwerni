@@ -1,12 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/controller/homecontroller.dart';
 import 'package:mashwerni/core/constant/color.dart';
+import 'package:mashwerni/core/function/translatedatabase.dart';
 import 'package:mashwerni/data/model/itemsmodel.dart';
 import 'package:mashwerni/linkapi.dart';
 
-class CustomItemsList extends GetView<HomeControllerImp> {
-  const CustomItemsList({super.key});
+class CustomItemsListHome extends GetView<HomeControllerImp> {
+  const CustomItemsListHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,24 +37,20 @@ class Items extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           margin: EdgeInsets.symmetric(horizontal: 10),
-          child: Image.network(
-            "${AppLink.imageItems}/${itemsModel.image1}",
+          child: CachedNetworkImage(
+            imageUrl: "${AppLink.imageItems}/${itemsModel.image1}",
             height: 100,
             width: 150,
             fit: BoxFit.contain,
+            color: AppColor.primaryText.withAlpha(70),
+            colorBlendMode: BlendMode.darken,
           ),
         ),
-        Container(
-          decoration: BoxDecoration(
-              color: AppColor.primaryText.withAlpha(70),
-              borderRadius: BorderRadius.circular(30)),
-          height: 120,
-          width: 180,
-        ),
         Positioned(
-            left: 10,
+            top: 10,
+            left: 30,
             child: Text(
-              "${itemsModel.title}",
+              "${translateDataBase(itemsModel.titleAR, itemsModel.title)}",
               style: TextStyle(
                   color: AppColor.textAndIcon,
                   fontWeight: FontWeight.bold,

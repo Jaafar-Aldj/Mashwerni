@@ -23,4 +23,5 @@ class AppLink {
 
   // Home
   static const String home = "$server/home/home.php";
+  static const String items = "$server/trip/items.php";
 }

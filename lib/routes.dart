@@ -13,15 +13,18 @@ import 'package:mashwerni/page/screen/auth/successsignup.dart';
 import 'package:mashwerni/page/screen/forgetpassword/verifycode.dart';
 import 'package:mashwerni/page/screen/home.dart';
 import 'package:mashwerni/page/screen/homescreen.dart';
+import 'package:mashwerni/page/screen/items.dart';
 import 'package:mashwerni/page/screen/language.dart';
 import 'package:mashwerni/page/screen/onboarding.dart';
+import 'package:mashwerni/page/screen/productdetails.dart';
+import 'package:mashwerni/page/widget/home/customitemslisthome.dart';
 import 'package:mashwerni/test.dart';
 import 'package:mashwerni/testpage.dart';
 
 List<GetPage<dynamic>>? routes = [
   // OnBoarding
   GetPage(name: "/", page: () => Language(), middlewares: [MyMiddleware()]),
-  // GetPage(name: "/", page: () => TestPage()),
+  // GetPage(name: "/", page: () => ProductDetails()),
   GetPage(name: AppRoute.onBoarding, page: () => OnBoarding()),
   // Auth
   GetPage(name: AppRoute.signUp, page: () => SignUp()),
@@ -36,4 +39,6 @@ List<GetPage<dynamic>>? routes = [
 
   // Home
   GetPage(name: AppRoute.home, page: () => HomeScreen()),
+  GetPage(name: AppRoute.items, page: () => ItemsPage()),
+  GetPage(name: AppRoute.product, page: () => ProductDetails()),
 ];

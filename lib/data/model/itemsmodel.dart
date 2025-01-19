@@ -11,6 +11,8 @@ class ItemsModel {
   int? cost;
   String? categoryName;
   String? categoryNameAR;
+  int? categoryID;
+  String? companyName;
   String? image1;
   String? image2;
   String? image3;
@@ -35,6 +37,8 @@ class ItemsModel {
     this.cost,
     this.categoryName,
     this.categoryNameAR,
+    this.categoryID,
+    this.companyName,
     this.destination1,
     this.destination2,
     this.destination3,
@@ -58,8 +62,10 @@ class ItemsModel {
     startLocation = json['start_location'];
     maxPassengers = json['max_passengers'];
     cost = json['cost'];
+    categoryID = json['category_id'];
     categoryName = json['category_name'];
     categoryNameAR = json['category_name_ar'];
+    companyName = json['company_name'];
     image1 = json['image_1'];
     image2 = json['image_2'];
     image3 = json['image_3'];
@@ -84,8 +90,10 @@ class ItemsModel {
     data['start_location'] = startLocation;
     data['max_passengers'] = maxPassengers;
     data['cost'] = cost;
+    data['category_id'] = categoryID;
     data['category_name'] = categoryName;
     data['category_name_ar'] = categoryNameAR;
+    data['company_name'] = companyName;
     data['image_1'] = image1;
     data['image_2'] = image2;
     data['image_3'] = image3;
