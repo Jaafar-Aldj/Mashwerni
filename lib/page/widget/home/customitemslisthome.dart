@@ -38,7 +38,7 @@ class Items extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           margin: EdgeInsets.symmetric(horizontal: 10),
           child: CachedNetworkImage(
-            imageUrl: "${AppLink.imageItems}/${itemsModel.image1}",
+            imageUrl: "${AppLink.imageItems}/${itemsModel.images![0]}",
             height: 100,
             width: 150,
             fit: BoxFit.contain,

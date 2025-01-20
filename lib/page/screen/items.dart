@@ -36,8 +36,9 @@ class ItemsPage extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return CustomItemsList(
-                        itemsModel:
-                            ItemsModel.fromJson(controller.data[index]));
+                      itemsModel: ItemsModel.fromJson(controller.data[index]),
+                      active: false,
+                    );
                   },
                 ),
               ),

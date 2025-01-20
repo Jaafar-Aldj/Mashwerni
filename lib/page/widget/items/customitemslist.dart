@@ -9,10 +9,16 @@ import 'package:mashwerni/linkapi.dart';
 
 class CustomItemsList extends GetView<ItemsControllerImp> {
   final ItemsModel itemsModel;
-  const CustomItemsList({super.key, required this.itemsModel});
+  final bool active;
+  const CustomItemsList({
+    super.key,
+    required this.itemsModel,
+    required this.active,
+  });
 
   @override
   Widget build(BuildContext context) {
+    List revImages = itemsModel.images!.reversed.toList();
     return InkWell(
       onTap: () {
         controller.goToPageProductDetails(itemsModel);
@@ -24,11 +30,13 @@ class CustomItemsList extends GetView<ItemsControllerImp> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CachedNetworkImage(
-                imageUrl:
-                    "${AppLink.imageItems}/${itemsModel.image5 ?? itemsModel.image4 ?? itemsModel.image3 ?? itemsModel.image2 ?? itemsModel.image1!}",
-                height: 100,
-                fit: BoxFit.contain,
+              Hero(
+                tag: "${itemsModel.tripNum}",
+                child: CachedNetworkImage(
+                  imageUrl: "${AppLink.imageItems}/${revImages[0]}",
+                  height: 100,
+                  fit: BoxFit.contain,
+                ),
               ),
               Text(
                 translateDataBase(itemsModel.titleAR!, itemsModel.title!),
@@ -44,7 +52,7 @@ class CustomItemsList extends GetView<ItemsControllerImp> {
                   Text("${itemsModel.cost} ${"syp".tr}"),
                   IconButton(
                     icon: Icon(
-                      Icons.favorite,
+                      active ? Icons.favorite : Icons.favorite_border,
                       color: AppColor.accent,
                     ),
                     onPressed: () {},

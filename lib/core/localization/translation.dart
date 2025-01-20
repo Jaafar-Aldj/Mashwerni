@@ -83,6 +83,8 @@ class MyTranslation extends Translations {
           "trips": "رحلات",
           "syp": "ل.س",
           "by": "بواسطة",
+          "destination": "الوجهة :",
+          "booking": "حجز",
         },
         "en": {
           "choose language": "Choose language",
@@ -163,6 +165,8 @@ class MyTranslation extends Translations {
           "trips": "Trips",
           "syp": "SYP",
           "by": "By",
+          "destination": "Destination :",
+          "booking": "Booking",
         },
       };
 }
