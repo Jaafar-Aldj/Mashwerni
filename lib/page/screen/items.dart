@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mashwerni/controller/favoritecontroller.dart';
 import 'package:mashwerni/controller/itemscontroller.dart';
 import 'package:mashwerni/core/class/handlingdataview.dart';
 import 'package:mashwerni/data/model/itemsmodel.dart';
@@ -13,6 +14,7 @@ class ItemsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ItemsControllerImp());
+    FavoriteController favoriteController = Get.put(FavoriteController());
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(15),
@@ -35,9 +37,12 @@ class ItemsPage extends StatelessWidget {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
+                    favoriteController.setFavorite(
+                      controller.data[index]['trip_num'],
+                      controller.data[index]['favorite'],
+                    );
                     return CustomItemsList(
                       itemsModel: ItemsModel.fromJson(controller.data[index]),
-                      active: false,
                     );
                   },
                 ),

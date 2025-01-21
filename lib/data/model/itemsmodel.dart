@@ -14,17 +14,8 @@ class ItemsModel {
   int? categoryID;
   String? companyName;
   List? images = [];
-  // String? image1;
-  // String? image2;
-  // String? image3;
-  // String? image4;
-  // String? image5;
   List? destinations = [];
-  // String? destination1;
-  // String? destination2;
-  // String? destination3;
-  // String? destination4;
-  // String? destination5;
+  int? favorite;
 
   ItemsModel({
     this.tripNum,
@@ -42,17 +33,8 @@ class ItemsModel {
     this.categoryID,
     this.companyName,
     this.destinations,
-    // this.destination1,
-    // this.destination2,
-    // this.destination3,
-    // this.destination4,
-    // this.destination5,
     this.images,
-    // this.image1,
-    // this.image2,
-    // this.image3,
-    // this.image4,
-    // this.image5,
+    this.favorite,
   });
 
   ItemsModel.fromJson(Map<String, dynamic> json) {
@@ -70,6 +52,7 @@ class ItemsModel {
     categoryName = json['category_name'];
     categoryNameAR = json['category_name_ar'];
     companyName = json['company_name'];
+    favorite = json['favorite'];
     for (var i = 0; i < 5; i++) {
       if (json['image_${i + 1}'] != null) {
         images?.add(json['image_${i + 1}']);
@@ -80,16 +63,6 @@ class ItemsModel {
         destinations?.add(json['destination_${i + 1}']);
       }
     }
-    // image1 = json['image_1'];
-    // image2 = json['image_2'];
-    // image3 = json['image_3'];
-    // image4 = json['image_4'];
-    // image5 = json['image_5'];
-    // destination1 = json['destination_1'];
-    // destination2 = json['destination_2'];
-    // destination3 = json['destination_3'];
-    // destination4 = json['destination_4'];
-    // destination5 = json['destination_5'];
   }
 
   Map<String, dynamic> toJson() {
@@ -108,6 +81,7 @@ class ItemsModel {
     data['category_name'] = categoryName;
     data['category_name_ar'] = categoryNameAR;
     data['company_name'] = companyName;
+    data['favorite'] = favorite;
     for (var i = 0; i < 5; i++) {
       if (images?[i]) {
         data['image_${i + 1}'] = images?[i];
@@ -122,16 +96,6 @@ class ItemsModel {
         data['destination_${i + 1}'] = null;
       }
     }
-    // data['image_1'] = image1;
-    // data['image_2'] = image2;
-    // data['image_3'] = image3;
-    // data['image_4'] = image4;
-    // data['image_5'] = image5;
-    // data['destination_1'] = destination1;
-    // data['destination_2'] = destination2;
-    // data['destination_3'] = destination3;
-    // data['destination_4'] = destination4;
-    // data['destination_5'] = destination5;
     return data;
   }
 }

@@ -26,7 +26,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: "/",
     page: () => Language(),
-    // middlewares: [MyMiddleware()],
+    middlewares: [MyMiddleware()],
   ),
   // GetPage(name: "/", page: () => ProductDetails()),
   GetPage(name: AppRoute.onBoarding, page: () => OnBoarding()),
