@@ -15,6 +15,7 @@ import 'package:mashwerni/page/screen/home.dart';
 import 'package:mashwerni/page/screen/homescreen.dart';
 import 'package:mashwerni/page/screen/items.dart';
 import 'package:mashwerni/page/screen/language.dart';
+import 'package:mashwerni/page/screen/myfavorite.dart';
 import 'package:mashwerni/page/screen/onboarding.dart';
 import 'package:mashwerni/page/screen/productdetails.dart';
 import 'package:mashwerni/page/widget/home/customitemslisthome.dart';
@@ -45,4 +46,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.home, page: () => HomeScreen()),
   GetPage(name: AppRoute.items, page: () => ItemsPage()),
   GetPage(name: AppRoute.product, page: () => ProductDetails()),
+  GetPage(name: AppRoute.myFavorite, page: () => MyFavorite()),
 ];

@@ -40,7 +40,10 @@ class CustomAppBar extends StatelessWidget {
           IconButton(
             color: AppColor.primary,
             iconSize: 35,
-            icon: Icon(Icons.notifications_active_outlined),
+            icon: Icon(
+              Icons.notifications_active_outlined,
+              color: AppColor.darkPrimary,
+            ),
             onPressed: iconOnPressed,
           ),
         ],

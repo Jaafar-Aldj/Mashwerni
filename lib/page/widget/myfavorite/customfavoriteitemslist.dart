@@ -1,27 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mashwerni/controller/favoritecontroller.dart';
-import 'package:mashwerni/controller/itemscontroller.dart';
+import 'package:mashwerni/controller/myfavoritecontroller.dart';
 import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/core/function/translatedatabase.dart';
-import 'package:mashwerni/data/model/itemsmodel.dart';
+import 'package:mashwerni/data/model/myfavoritemodel.dart';
 import 'package:mashwerni/linkapi.dart';
 
-class CustomItemsList extends GetView<ItemsControllerImp> {
-  final ItemsModel itemsModel;
-  const CustomItemsList({
+class CustomFavoriteItemsList extends GetView<MyFavoriteControllerImp> {
+  final MyFavoriteModel itemsModel;
+  const CustomFavoriteItemsList({
     super.key,
     required this.itemsModel,
   });
 
   @override
   Widget build(BuildContext context) {
-    Get.put(FavoriteControllerImp);
+    Get.put(MyFavoriteControllerImp());
     List revImages = itemsModel.images!.reversed.toList();
     return InkWell(
       onTap: () {
-        controller.goToPageProductDetails(itemsModel);
+        // controller.goToPageProductDetails(itemsModel);
       },
       child: Card(
         child: Padding(
@@ -39,7 +38,7 @@ class CustomItemsList extends GetView<ItemsControllerImp> {
                 ),
               ),
               Text(
-                translateDataBase(itemsModel.titleAR!, itemsModel.title!),
+                translateDataBase(itemsModel.titleAr!, itemsModel.title!),
                 style: context.textTheme.titleMedium,
               ),
               Text(
@@ -50,23 +49,13 @@ class CustomItemsList extends GetView<ItemsControllerImp> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("${itemsModel.cost} ${"syp".tr}"),
-                  GetBuilder<FavoriteControllerImp>(
-                    builder: (favController) => IconButton(
-                      icon: Icon(
-                        favController.isFavorite[itemsModel.tripNum] == 1
-                            ? Icons.favorite
-                            : Icons.favorite_border,
-                        color: AppColor.accent,
-                      ),
-                      onPressed: () {
-                        if (favController.isFavorite[itemsModel.tripNum] == 1) {
-                          favController.setFavorite(itemsModel.tripNum!, 0);
-                          favController.removeFavorite(itemsModel.tripNum!);
-                        } else {
-                          favController.setFavorite(itemsModel.tripNum!, 1);
-                          favController.addFavorite(itemsModel.tripNum!);
-                        }
-                      },
+                  IconButton(
+                    onPressed: () {
+                      controller.deleteFavorite(itemsModel.favoriteId!);
+                    },
+                    icon: Icon(
+                      Icons.delete_outline,
+                      color: AppColor.primary,
                     ),
                   ),
                 ],

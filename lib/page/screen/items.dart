@@ -14,7 +14,7 @@ class ItemsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ItemsControllerImp());
-    FavoriteController favoriteController = Get.put(FavoriteController());
+    FavoriteControllerImp favoriteController = Get.put(FavoriteControllerImp());
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(15),

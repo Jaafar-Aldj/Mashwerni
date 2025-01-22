@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
 import 'package:mashwerni/core/function/handlingdatacontroller.dart';
+import 'package:mashwerni/core/service/services.dart';
 import 'package:mashwerni/data/datasource/remote/favoritedata.dart';
 
 abstract class FavoriteController extends GetxController {
   setFavorite(int itemID, int val);
-  addFav(int tripNUM, int userID);
-  removeFav(int tripNUM, int userID);
+  addFavorite(int itemID);
+  removeFavorite(int itemID);
 }
 
 class FavoriteControllerImp extends FavoriteController {
@@ -15,6 +16,7 @@ class FavoriteControllerImp extends FavoriteController {
   // value => 1(fav) or 0(not_fav)
   FavoriteData favoriteData = FavoriteData(Get.find());
   StatusRequest? statusRequest;
+  MyServices myServices = Get.find();
 
   @override
   setFavorite(int itemID, int val) {
@@ -23,32 +25,32 @@ class FavoriteControllerImp extends FavoriteController {
   }
 
   @override
-  addFav(int tripNUM, int userID) async {
+  addFavorite(int itemID) async {
     statusRequest = StatusRequest.loading;
-    var response = await favoriteData.addFavorite(tripNUM, userID);
+    var response = await favoriteData.addFavorite(
+        itemID, myServices.sharedPreferences.getInt('id')!);
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        // data.add(response['data']);
+        Get.rawSnackbar(title: "notification".tr, message: "done".tr);
       } else {
         statusRequest = StatusRequest.failure;
       }
     }
-    update();
   }
 
   @override
-  removeFav(int tripNUM, int userID) async {
+  removeFavorite(int itemID) async {
     statusRequest = StatusRequest.loading;
-    var response = await favoriteData.removeFavorite(tripNUM, userID);
+    var response = await favoriteData.removeFavorite(
+        itemID, myServices.sharedPreferences.getInt('id')!);
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        // data.add(response['data']);
+        Get.rawSnackbar(title: "notification".tr, message: "done".tr);
       } else {
         statusRequest = StatusRequest.failure;
       }
     }
-    update();
   }
 }

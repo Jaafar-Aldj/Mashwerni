@@ -13,4 +13,5 @@ class AppRoute {
   static String home = "/home";
   static String items = "/items";
   static String product = "/productdetails";
+  static String myFavorite = "/myfavorite";
 }

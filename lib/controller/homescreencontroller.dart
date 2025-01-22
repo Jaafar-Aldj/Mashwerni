@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/page/screen/home.dart';
+import 'package:mashwerni/page/screen/myfavorite.dart';
 
 abstract class HomeScreenController extends GetxController {
   changePage(int i);
@@ -25,14 +26,7 @@ class HomeScreenControllerImp extends HomeScreenController {
         ),
       ],
     ),
-    Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: Text("Favorite"),
-        ),
-      ],
-    ),
+    MyFavorite(),
     Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

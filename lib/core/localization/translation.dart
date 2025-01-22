@@ -85,6 +85,8 @@ class MyTranslation extends Translations {
           "by": "بواسطة",
           "destination": "الوجهة :",
           "booking": "حجز",
+          "notification": "إشعار",
+          "done": "تم",
         },
         "en": {
           "choose language": "Choose language",
@@ -167,6 +169,8 @@ class MyTranslation extends Translations {
           "by": "By",
           "destination": "Destination :",
           "booking": "Booking",
+          "notification": "Notification",
+          "done": "Done",
         },
       };
 }
