@@ -87,6 +87,12 @@ class MyTranslation extends Translations {
           "booking": "حجز",
           "notification": "إشعار",
           "done": "تم",
+          "resend code": "إعادة إرسال الرمز",
+          "about us": "معلومات عنا",
+          "contact us": "تواصل معنا",
+          "logout": "تسجيل خروج",
+          "disable notifications": "ايقاف الإشعارات",
+          "address": "العنوان",
         },
         "en": {
           "choose language": "Choose language",
@@ -171,6 +177,12 @@ class MyTranslation extends Translations {
           "booking": "Booking",
           "notification": "Notification",
           "done": "Done",
+          "resend code": "Resend Code",
+          "about us": "About Us",
+          "contact us": "Contact Us",
+          "logout": "Logout",
+          "disable notifications": "Disable Notifications",
+          "address": "Address",
         },
       };
 }

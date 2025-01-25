@@ -51,6 +51,21 @@ class CheckEmail extends StatelessWidget {
                     controller.goToSuccessSignUp(verifyCode);
                   },
                 ),
+                SizedBox(height: 40),
+                InkWell(
+                  onTap: () {
+                    controller.resend();
+                  },
+                  child: Center(
+                    child: Text(
+                      "resend code".tr,
+                      style: TextStyle(
+                        color: AppColor.primary,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

@@ -7,6 +7,7 @@ import 'package:mashwerni/data/datasource/remote/auth/checkemail.dart';
 abstract class CheckEmailController extends GetxController {
   checkEmail();
   goToSuccessSignUp(String verifyCode);
+  resend();
 }
 
 class CheckEmailControllerImp extends CheckEmailController {
@@ -38,5 +39,10 @@ class CheckEmailControllerImp extends CheckEmailController {
   void onInit() {
     email = Get.arguments['email'];
     super.onInit();
+  }
+
+  @override
+  resend() {
+    checkEmailData.resendData(email);
   }
 }

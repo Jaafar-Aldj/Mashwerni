@@ -19,13 +19,13 @@ class HomeScreen extends StatelessWidget {
           backgroundColor:
               controller.currentPage == 4 ? AppColor.accent : AppColor.primary,
           child: Icon(
-            Icons.home_outlined,
+            controller.listPage[4]['icon'],
             color: AppColor.textAndIcon,
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: CustomBottomAppBarHome(),
-        body: controller.listPage.elementAt(controller.currentPage),
+        body: controller.listPage[controller.currentPage]['widget'],
       ),
     );
   }

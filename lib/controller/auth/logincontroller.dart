@@ -33,13 +33,22 @@ class LoginControllerImp extends LoginController {
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          myServices.sharedPreferences.setInt("id", response['data']['ID']);
-          myServices.sharedPreferences
-              .setString("email", response['data']['email']);
-          myServices.sharedPreferences
-              .setString("phone", response['data']['phone']);
-          myServices.sharedPreferences.setString("step", "2");
-          Get.offNamed(AppRoute.home);
+          if (response['data']['approve'] == 1) {
+            myServices.sharedPreferences.setInt("id", response['data']['ID']);
+            myServices.sharedPreferences
+                .setString("email", response['data']['email']);
+            myServices.sharedPreferences
+                .setString("phone", response['data']['phone']);
+            myServices.sharedPreferences.setString("step", "2");
+            Get.offNamed(AppRoute.homeScreen);
+          } else {
+            Get.toNamed(
+              AppRoute.checkEmail,
+              arguments: {
+                'email': response['data']['email'],
+              },
+            );
+          }
         } else {
           Get.defaultDialog(
               title: "warning".tr,

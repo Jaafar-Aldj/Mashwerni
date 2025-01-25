@@ -10,8 +10,12 @@ class AppRoute {
   static String checkEmail = "/checkemail";
 
   //  Home
-  static String home = "/home";
+  static String homeScreen = "/homescreen";
   static String items = "/items";
   static String product = "/productdetails";
+  static String home = "/home";
   static String myFavorite = "/myfavorite";
+  static String profile = "/profile";
+  static String settings = "/settings";
+  static String trips = "/trips";
 }

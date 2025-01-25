@@ -16,7 +16,7 @@ class CustomBottomAppBarHome extends StatelessWidget {
         child: Row(
           children: [
             ...List.generate(
-              controller.listTitleBottomAppBar.length,
+              controller.listPage.length - 1,
               (index) => index == 2
                   ? Expanded(
                       child: Row(
@@ -24,8 +24,8 @@ class CustomBottomAppBarHome extends StatelessWidget {
                         children: [
                           Spacer(),
                           CustomButtonAppBar(
-                            icon: controller.listIcon[index],
-                            textButton: controller.listTitleBottomAppBar[index],
+                            icon: controller.listPage[index]['icon'],
+                            textButton: controller.listPage[index]['title'],
                             onPressed: () {
                               controller.changePage(index);
                             },
@@ -37,8 +37,8 @@ class CustomBottomAppBarHome extends StatelessWidget {
                       ),
                     )
                   : CustomButtonAppBar(
-                      icon: controller.listIcon[index],
-                      textButton: controller.listTitleBottomAppBar[index],
+                      icon: controller.listPage[index]['icon'],
+                      textButton: controller.listPage[index]['title'],
                       onPressed: () {
                         controller.changePage(index);
                       },
