@@ -1,5 +1,7 @@
 class AppRoute {
   static String onBoarding = "/onboarding";
+
+  // Auth
   static String login = "/login";
   static String signUp = "/signup";
   static String successSignUp = "/successsignup";
@@ -8,6 +10,9 @@ class AppRoute {
   static String resetPassword = "/resetpassword";
   static String successResetPassword = "/sucessresetpassword";
   static String checkEmail = "/checkemail";
+  static String userOrManager = "/userormanager";
+  static String userAccount = "/useraccount";
+  static String managerAccount = "/manageraccount";
 
   //  Home
   static String homeScreen = "/homescreen";
@@ -17,5 +22,5 @@ class AppRoute {
   static String myFavorite = "/myfavorite";
   static String profile = "/profile";
   static String settings = "/settings";
-  static String trips = "/trips";
+  static String myTrips = "/trips";
 }

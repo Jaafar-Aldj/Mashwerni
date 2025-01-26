@@ -4,6 +4,8 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/core/middleware/mymiddleware.dart';
 import 'package:mashwerni/page/screen/auth/checkemail.dart';
+import 'package:mashwerni/page/screen/auth/useraccount.dart';
+import 'package:mashwerni/page/screen/auth/userormanager.dart';
 import 'package:mashwerni/page/screen/forgetpassword/forgetpassword.dart';
 import 'package:mashwerni/page/screen/auth/login.dart';
 import 'package:mashwerni/page/screen/forgetpassword/resetpassword.dart';
@@ -20,20 +22,21 @@ import 'package:mashwerni/page/screen/onboarding.dart';
 import 'package:mashwerni/page/screen/productdetails.dart';
 import 'package:mashwerni/page/screen/profile.dart';
 import 'package:mashwerni/page/screen/settings.dart';
-import 'package:mashwerni/page/screen/trips.dart';
+import 'package:mashwerni/page/screen/mytrips.dart';
 import 'package:mashwerni/page/widget/home/customitemslisthome.dart';
 import 'package:mashwerni/test.dart';
 import 'package:mashwerni/testpage.dart';
 
 List<GetPage<dynamic>>? routes = [
   // OnBoarding
-  GetPage(
-    name: "/",
-    page: () => Language(),
-    middlewares: [MyMiddleware()],
-  ),
-  // GetPage(name: "/", page: () => ProductDetails()),
+  // GetPage(
+  //   name: "/",
+  //   page: () => Language(),
+  //   middlewares: [MyMiddleware()],
+  // ),
+  GetPage(name: "/", page: () => UserOrManager()),
   GetPage(name: AppRoute.onBoarding, page: () => OnBoarding()),
+
   // Auth
   GetPage(name: AppRoute.signUp, page: () => SignUp()),
   GetPage(name: AppRoute.login, page: () => Login()),
@@ -44,6 +47,8 @@ List<GetPage<dynamic>>? routes = [
       name: AppRoute.successResetPassword, page: () => SuccessResetPassword()),
   GetPage(name: AppRoute.verfiyCode, page: () => VerifyCode()),
   GetPage(name: AppRoute.checkEmail, page: () => CheckEmail()),
+  GetPage(name: AppRoute.userOrManager, page: () => UserOrManager()),
+  GetPage(name: AppRoute.userAccount, page: () => UserAccount()),
 
   // Home
   GetPage(name: AppRoute.homeScreen, page: () => HomeScreen()),
@@ -53,5 +58,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.home, page: () => Home()),
   GetPage(name: AppRoute.profile, page: () => Profile()),
   GetPage(name: AppRoute.settings, page: () => Settings()),
-  GetPage(name: AppRoute.trips, page: () => Trips()),
+  GetPage(name: AppRoute.myTrips, page: () => MyTrips()),
 ];

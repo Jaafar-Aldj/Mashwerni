@@ -28,9 +28,11 @@ class MyFavoriteControllerImp extends MyFavoriteController {
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         List responseData = response['data'];
-        data.addAll(responseData.map(
-          (e) => MyFavoriteModel.fromJson(e),
-        ));
+        data.addAll(
+          responseData.map(
+            (e) => MyFavoriteModel.fromJson(e),
+          ),
+        );
       } else {
         statusRequest = StatusRequest.failure;
       }

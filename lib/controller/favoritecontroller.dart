@@ -37,6 +37,7 @@ class FavoriteControllerImp extends FavoriteController {
         statusRequest = StatusRequest.failure;
       }
     }
+    update();
   }
 
   @override
@@ -52,5 +53,6 @@ class FavoriteControllerImp extends FavoriteController {
         statusRequest = StatusRequest.failure;
       }
     }
+    update();
   }
 }

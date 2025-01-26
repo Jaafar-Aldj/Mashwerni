@@ -13,6 +13,7 @@ class AppLink {
   static const String checkEmailVerifyCode = "$auth/verifycode.php";
   static const String login = "$auth/login.php";
   static const String resend = "$auth/resend.php";
+  static const String userAccount = "$auth/user_account.php";
 
   // Forget Password
   static const String forgetpassword = "$server/forgetpassword";
@@ -25,6 +26,7 @@ class AppLink {
   // Home
   static const String home = "$server/home/home.php";
   static const String items = "$server/trip/items.php";
+  static const String categories = "$server/categories/view.php";
 
   // favorite
   static const String addFav = "$server/trip/add_favorite.php";
