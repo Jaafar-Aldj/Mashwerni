@@ -34,13 +34,29 @@ class LoginControllerImp extends LoginController {
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
           if (response['data']['approve'] == 1) {
-            myServices.sharedPreferences.setInt("id", response['data']['ID']);
             myServices.sharedPreferences
                 .setString("email", response['data']['email']);
             myServices.sharedPreferences
                 .setString("phone", response['data']['phone']);
-            myServices.sharedPreferences.setString("step", "2");
-            Get.offNamed(AppRoute.homeScreen);
+            myServices.sharedPreferences.setString("step", "3");
+            myServices.sharedPreferences
+                .setInt("account_id", response['data']['ID']);
+            if (response['data']['is_manager'] == 1) {
+              if (response['manager'] == 0) {
+                Get.toNamed(AppRoute.userOrManager);
+              } else {
+                myServices.sharedPreferences
+                    .setInt("manager_id", response['manager']['ID']);
+              }
+            } else {
+              if (response['user'] == 0) {
+                Get.toNamed(AppRoute.userOrManager);
+              } else {
+                myServices.sharedPreferences
+                    .setInt("user_id", response['user']['ID']);
+                Get.offNamed(AppRoute.homeScreen);
+              }
+            }
           } else {
             Get.toNamed(
               AppRoute.checkEmail,

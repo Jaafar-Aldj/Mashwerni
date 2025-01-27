@@ -3,6 +3,7 @@ class CategoriesModel {
   String? categoryName;
   String? categoryNameAr;
   String? categoryImage;
+  bool selected = false;
 
   CategoriesModel({
     this.categoryID,

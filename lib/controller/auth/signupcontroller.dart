@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
 import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/core/function/handlingdatacontroller.dart';
+import 'package:mashwerni/core/service/services.dart';
 import 'package:mashwerni/data/datasource/remote/auth/signup.dart';
 
 abstract class SignUpController extends GetxController {
@@ -13,6 +14,7 @@ abstract class SignUpController extends GetxController {
 
 class SignUpControllerImp extends SignUpController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
+  MyServices myServices = Get.find();
   late TextEditingController email;
   late TextEditingController password;
   late TextEditingController phone;
@@ -32,7 +34,9 @@ class SignUpControllerImp extends SignUpController {
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          // data.add(response['data']);
+          data.add(response['data']);
+          myServices.sharedPreferences
+              .setInt("account_id", response['data']['ID']);
           Get.offNamed(AppRoute.checkEmail, arguments: {"email": email.text});
         } else {
           Get.defaultDialog(

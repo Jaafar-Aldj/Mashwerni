@@ -3,9 +3,12 @@ import 'package:get/get.dart';
 import 'package:mashwerni/controller/auth/useraccountcontroller.dart';
 import 'package:mashwerni/core/class/handlingdataview.dart';
 import 'package:mashwerni/core/function/validinput.dart';
+import 'package:mashwerni/page/widget/auth/custombutton.dart';
+import 'package:mashwerni/page/widget/auth/customcategorieschoose.dart';
 import 'package:mashwerni/page/widget/auth/customtextbody.dart';
 import 'package:mashwerni/page/widget/auth/customtextform.dart';
 import 'package:mashwerni/page/widget/auth/customtexttitle.dart';
+import 'package:mashwerni/page/widget/auth/customtriplongchoose.dart';
 
 class UserAccount extends StatelessWidget {
   const UserAccount({super.key});
@@ -96,59 +99,21 @@ class UserAccount extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
-                      height: 150,
-                      child: ListWheelScrollView.useDelegate(
-                        itemExtent: 50,
-                        diameterRatio: 1.5,
-                        perspective: 0.003,
-                        physics: FixedExtentScrollPhysics(),
-                        onSelectedItemChanged: (index) {
-                          controller.changeSelectedDays(index);
-                        },
-                        childDelegate: ListWheelChildBuilderDelegate(
-                          builder: (context, index) => Center(
-                            child: Text(
-                              index + 1 > 7
-                                  ? "more than week".tr
-                                  : "${index + 1} ${"day".tr}",
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ),
-                          childCount: 8,
-                        ),
-                      ),
-                    ),
+                    CustomTripLongChoose(),
                     SizedBox(height: 20),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
-                      itemCount: controller.categories1.length,
-                      itemBuilder: (context, index) {
-                        var category = controller.categories1[index];
-                        return CheckboxListTile(
-                          title: Text(category['name'] as String),
-                          value: category['selected'],
-                          onChanged: (value) {
-                            controller.selecteOnChange(value, category);
-                          },
-                        );
-                      },
+                    Text(
+                      "please choose from 1 to 4 categories you prefer".tr,
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (!controller.isSelectionValid()) {
-                            Get.snackbar(
-                              'خطأ',
-                              'يرجى اختيار فئة واحدة على الأقل.',
-                              snackPosition: SnackPosition.BOTTOM,
-                            );
-                            return;
-                          }
-                        },
-                        child: Text('تأكيد'),
-                      ),
+                    SizedBox(height: 10),
+                    CustomCategoriesChoose(),
+                    SizedBox(height: 20),
+                    CustomButtonAuth(
+                      text: "confirm".tr,
+                      onPressed: () {
+                        controller.addAccount();
+                      },
                     ),
                   ],
                 ),

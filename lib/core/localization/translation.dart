@@ -117,6 +117,15 @@ class MyTranslation extends Translations {
           "more than week": "أكثر من أسبوع",
           "day": "يوم",
           "trip duration you prefer": "مدة الرحلة التي تفضلها",
+          "selection limit": "حد الاختيار",
+          "you can choose a maximum of 4 categories":
+              "يمكنك اختيار 4 فئات كحد أقصى",
+          "please choose from 1 to 4 categories you prefer":
+              "رجاءً اختار من 1 ل 4 فئات تفضلها :",
+          "error": "خطأ",
+          "please choose one category at least":
+              "يرجى اختيار فئة واحدة على الأقل",
+          "confirm": "تأكيد",
         },
         "en": {
           "choose language": "Choose language",
@@ -230,6 +239,15 @@ class MyTranslation extends Translations {
           "more than week": "More than week",
           "day": "day",
           "trip duration you prefer": "Trip duration you prefer",
+          "selection limit": "Selection Limit",
+          "you can choose a maximum of 4 categories":
+              "You can choose a maximum of 4 categories",
+          "please choose from 1 to 4 categories you prefer":
+              "Please choose from 1 to 4 categories you prefer :",
+          "error": "Error",
+          "please choose one category at least":
+              "Please choose one category at least",
+          "confirm": "Confirm",
         },
       };
 }

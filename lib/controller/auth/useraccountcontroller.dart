@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
+import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/core/function/handlingdatacontroller.dart';
+import 'package:mashwerni/core/service/services.dart';
 import 'package:mashwerni/data/datasource/remote/auth/useraccount.dart';
 import 'package:mashwerni/data/model/categoriesmodel.dart';
 
@@ -10,6 +12,9 @@ abstract class UserAccountController extends GetxController {
   addAccount();
   changeSelectedDays(int i);
   String durationText();
+  bool canSelectMoreCategories();
+  bool isSelectionValid();
+  selecteOnChange(bool value, CategoriesModel category);
 }
 
 class UserAccountControllerImp extends UserAccountController {
@@ -23,16 +28,15 @@ class UserAccountControllerImp extends UserAccountController {
   int selectedDays = 1;
 
   UserAccountData userAccountData = UserAccountData(Get.find());
+  MyServices myServices = Get.find();
   StatusRequest? statusRequest;
   List<CategoriesModel> categories = [];
-  List<Map<String, dynamic>> categories1 = [
-    {'name': 'ثقافية', 'selected': false},
-    {'name': 'مغامرات', 'selected': false},
-    {'name': 'استرخاء', 'selected': false},
-    {'name': 'تاريخية', 'selected': false},
-    {'name': 'طبيعية', 'selected': false},
-    {'name': 'رياضية', 'selected': false},
-  ];
+  List<CategoriesModel> get selectedCategories {
+    return categories
+        .where((category) => category.selected)
+        .map((category) => category)
+        .toList();
+  }
 
   @override
   void onInit() {
@@ -79,16 +83,51 @@ class UserAccountControllerImp extends UserAccountController {
 
   @override
   addAccount() async {
-    statusRequest = StatusRequest.loading;
-    var response = await userAccountData.postData();
-    statusRequest = handlingData(response);
-    if (statusRequest == StatusRequest.success) {
-      if (response['status'] == "success") {
-      } else {
-        statusRequest = StatusRequest.failure;
+    var formData = formState.currentState;
+    if (formData!.validate()) {
+      if (!isSelectionValid()) {
+        Get.snackbar(
+          "error".tr,
+          "please choose one category at least".tr,
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        return;
       }
+      List selectedCategories1 = selectedCategories.toList();
+      List<int?> favoriteList = [];
+      for (var i = 0; i < 4; i++) {
+        if (selectedCategories1.isEmpty) {
+          favoriteList.add(0);
+        } else {
+          favoriteList.add(selectedCategories1[0].categoryID);
+          selectedCategories1.removeAt(0);
+        }
+      }
+      statusRequest = StatusRequest.loading;
+      var response = await userAccountData.postData(
+        accountID: myServices.sharedPreferences.getInt("account_id").toString(),
+        firstName: firstName.text,
+        firstNameAr: firstNameAr.text,
+        lastName: lastName.text,
+        lastNameAr: lastNameAR.text,
+        location: location.text,
+        locationAr: locationAr.text,
+        tripLongFavorite: selectedDays.toString(),
+        favorite1: favoriteList[0].toString(),
+        favorite2: favoriteList[1].toString(),
+        favorite3: favoriteList[2].toString(),
+        favorite4: favoriteList[3].toString(),
+      );
+      statusRequest = handlingData(response);
+      if (statusRequest == StatusRequest.success) {
+        if (response['status'] == "success") {
+          Get.offNamed(AppRoute.successSignUp);
+        } else {
+          statusRequest = StatusRequest.failure;
+        }
+      }
+      update();
     }
-    update();
   }
 
   @override
@@ -106,31 +145,26 @@ class UserAccountControllerImp extends UserAccountController {
     }
   }
 
-  // التحقق من عدد الفئات المختارة
+  @override
   bool canSelectMoreCategories() {
-    return selectedCategories.length < 5;
+    return selectedCategories.length < 4;
   }
 
-  List<String> get selectedCategories {
-    return categories1
-        .where((category) => category['selected'])
-        .map((category) => category['name'] as String)
-        .toList();
-  }
-
+  @override
   bool isSelectionValid() {
     return selectedCategories.isNotEmpty;
   }
 
-  selecteOnChange(value, category) {
+  @override
+  selecteOnChange(bool value, CategoriesModel category) {
     if (value == true && !canSelectMoreCategories()) {
       Get.snackbar(
-        'حد الاختيار',
-        'يمكنك اختيار 5 فئات كحد أقصى.',
+        "selection limit".tr,
+        "you can choose a maximum of 4 categories".tr,
         snackPosition: SnackPosition.BOTTOM,
       );
     } else {
-      category['selected'] = value;
+      category.selected = value;
     }
     update();
   }
