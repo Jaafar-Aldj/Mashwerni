@@ -15,7 +15,7 @@ class HomeControllerImp extends HomeController {
   late String lang;
   String? email;
   String? phone;
-  int? id;
+  int? userID;
   StatusRequest? statusRequest;
   HomeData homeData = HomeData(Get.find());
   List categories = [];
@@ -40,7 +40,7 @@ class HomeControllerImp extends HomeController {
   initialData() {
     email = myServices.sharedPreferences.getString("email");
     phone = myServices.sharedPreferences.getString("phone");
-    id = myServices.sharedPreferences.getInt("id");
+    userID = myServices.sharedPreferences.getInt("user_id");
     lang = myServices.sharedPreferences.getString("lang")!;
   }
 

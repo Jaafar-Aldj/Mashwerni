@@ -15,8 +15,7 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    SignUpControllerImp controller = Get.put(SignUpControllerImp());
+    Get.put(SignUpControllerImp());
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,

@@ -47,6 +47,7 @@ class LoginControllerImp extends LoginController {
               } else {
                 myServices.sharedPreferences
                     .setInt("manager_id", response['manager']['ID']);
+                Get.offNamed(AppRoute.managerHomeScreen);
               }
             } else {
               if (response['user'] == 0) {

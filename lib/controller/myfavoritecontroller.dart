@@ -23,7 +23,7 @@ class MyFavoriteControllerImp extends MyFavoriteController {
   getData() async {
     statusRequest = StatusRequest.loading;
     var response = await myFavoriteData
-        .getData(myServices.sharedPreferences.getInt('id')!);
+        .getData(myServices.sharedPreferences.getInt('user_id')!);
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {

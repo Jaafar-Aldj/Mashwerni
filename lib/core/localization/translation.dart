@@ -126,6 +126,30 @@ class MyTranslation extends Translations {
           "please choose one category at least":
               "يرجى اختيار فئة واحدة على الأقل",
           "confirm": "تأكيد",
+          "enter your company name in english":
+              "أدخل اسم شركتك باللغة الإنكليزية",
+          "company name": "اسم الشركة",
+          "enter your company name in arabic": "أدخل اسم شركتك باللغة العربية",
+          "please wait": "الرجاء الإنتظار",
+          "please send your email and phone number at one of these numbers":
+              "رجاءً أرسل البريد الإلكتروني الخاص بك ورقم هاتفك على احد هذه الأرقام",
+          "you haven't been appointed as a manger yet":
+              "لم يتم تعيينك كمنظم بعد!!",
+          "add trip": "إضافة رحلة",
+          "add your trip": "أضف رحلتك",
+          "title": "عنوان الرحلة",
+          "enter title in english": "أدخل عنوان الرحلة باللغة الإنكليزية",
+          "enter title in arabic": "أدخل عنوان الرحلة باللغة العربية",
+          "description": "وصف الرحلة",
+          "enter description in english": "أدخل وصف الرحلة باللغة الإنكليزية",
+          "enter description in arabic": "أدخل وصف الرحلة باللغة العربية",
+          "start location": "موقع الانطلاق",
+          "enter start location in english":
+              "أدخل موقع الانطلاق باللغة الإنكليزية",
+          "enter start location in arabic": "أدخل موقع الانطلاق باللغة العربية",
+          "your trip duration is": "طول رحلتك هو :",
+          "please choose 1 category": "رجاءً اختر فئة واحدة",
+          "you can choose only one category": "يمكنك اختيار فئة واحدة فقط",
         },
         "en": {
           "choose language": "Choose language",
@@ -248,6 +272,31 @@ class MyTranslation extends Translations {
           "please choose one category at least":
               "Please choose one category at least",
           "confirm": "Confirm",
+          "enter your company name in english":
+              "Enter your company name in English",
+          "company name": "Company Name",
+          "enter your company name in arabic":
+              "Enter your company name in Arabic",
+          "please wait": "Please Wait",
+          "please send your email and phone number at one of these numbers":
+              "Please send your email and phone number at one of these numbers",
+          "you haven't been appointed as a manger yet":
+              "You haven't been appointed as a manger yet!!",
+          "add trip": "Add Trip",
+          "add your trip": "Add your trip",
+          "title": "Title",
+          "enter title in english": "Enter title in English",
+          "enter title in arabic": "Enter title in Arabic",
+          "description": "Description",
+          "enter description in english": "Enter description in English",
+          "enter description in arabic": "Enter description in Arabic",
+          "start location": "Start Location",
+          "enter start location in english": "Enter start location in English",
+          "enter start location in arabic": "Enter start location in Arabic",
+          "your trip duration is": "Your trip duration is :",
+          "please choose 1 category": "Please choose 1 category",
+          "you can choose only one category":
+              "You can choose only one category",
         },
       };
 }

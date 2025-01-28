@@ -44,7 +44,7 @@ class ItemsControllerImp extends ItemsController {
     statusRequest = StatusRequest.loading;
     var response = await itemsData.getData(
       categories[selectedCat]['category_id'],
-      myServices.sharedPreferences.getInt('id')!,
+      myServices.sharedPreferences.getInt('user_id')!,
     );
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {

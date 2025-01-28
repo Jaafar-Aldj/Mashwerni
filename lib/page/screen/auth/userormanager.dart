@@ -30,8 +30,7 @@ class UserOrManager extends StatelessWidget {
             CustomButtonLang(
               textButton: "manager".tr,
               onPressed: () {
-                // controller.changeLang("en");
-                // Get.offNamed(AppRoute.onBoarding);
+                Get.toNamed(AppRoute.managerCheck);
               },
             ),
             SizedBox(height: 30),

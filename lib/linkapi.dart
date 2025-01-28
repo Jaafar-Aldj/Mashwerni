@@ -14,6 +14,8 @@ class AppLink {
   static const String login = "$auth/login.php";
   static const String resend = "$auth/resend.php";
   static const String userAccount = "$auth/user_account.php";
+  static const String managerAccount = "$auth/manager_account.php";
+  static const String managerCheck = "$auth/manager_check.php";
 
   // Forget Password
   static const String forgetpassword = "$server/forgetpassword";
@@ -33,4 +35,7 @@ class AppLink {
   static const String removeFav = "$server/trip/remove_favorite.php";
   static const String viewMyFavorite = "$server/trip/view_my_favorite.php";
   static const String deleteFavorite = "$server/trip/delete_favorite.php";
+
+  //  =====================Manager===================
+  static const String addTrip = "$server/trip/add_trip.php";
 }

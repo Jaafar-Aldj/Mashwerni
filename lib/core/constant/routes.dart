@@ -13,6 +13,7 @@ class AppRoute {
   static String userOrManager = "/userormanager";
   static String userAccount = "/useraccount";
   static String managerAccount = "/manageraccount";
+  static String managerCheck = "/managercheck";
 
   //  Home
   static String homeScreen = "/homescreen";
@@ -23,4 +24,8 @@ class AppRoute {
   static String profile = "/profile";
   static String settings = "/settings";
   static String myTrips = "/trips";
+
+  // =====================Manager====================
+  static String managerHomeScreen = "/managerhomescreen";
+  static String addTrip = "/addtrip";
 }
