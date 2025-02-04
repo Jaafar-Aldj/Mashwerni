@@ -32,12 +32,12 @@ import 'package:mashwerni/test.dart';
 import 'package:mashwerni/testpage.dart';
 
 List<GetPage<dynamic>>? routes = [
-  // GetPage(
-  //   name: "/",
-  //   page: () => Language(),
-  //   middlewares: [MyMiddleware()],
-  // ),
-  GetPage(name: "/", page: () => Login()),
+  GetPage(
+    name: "/",
+    page: () => Language(),
+    middlewares: [MyMiddleware()],
+  ),
+  // GetPage(name: "/", page: () => Login()),
   GetPage(name: AppRoute.onBoarding, page: () => OnBoarding()),
 
   // Auth

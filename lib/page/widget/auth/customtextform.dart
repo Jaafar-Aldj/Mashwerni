@@ -10,6 +10,7 @@ class CustomTextForm extends StatelessWidget {
   final bool isNumber;
   final bool? hideText;
   final void Function()? onTapIcon;
+  final void Function(String)? onChanged;
   const CustomTextForm({
     super.key,
     required this.hintText,
@@ -20,6 +21,7 @@ class CustomTextForm extends StatelessWidget {
     required this.isNumber,
     this.hideText,
     this.onTapIcon,
+    this.onChanged,
   });
 
   @override
@@ -27,6 +29,7 @@ class CustomTextForm extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        onChanged: onChanged,
         obscureText: hideText == null || hideText == false ? false : true,
         keyboardType: isNumber
             ? TextInputType.numberWithOptions(decimal: true)

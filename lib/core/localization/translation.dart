@@ -150,6 +150,11 @@ class MyTranslation extends Translations {
           "your trip duration is": "طول رحلتك هو :",
           "please choose 1 category": "رجاءً اختر فئة واحدة",
           "you can choose only one category": "يمكنك اختيار فئة واحدة فقط",
+          "choose a start date": "اختر موعد بدء الرحلة",
+          "enter trip cost": "أدخل تكلفة الرحلة",
+          "enter the price in syp": "أدخل السعر باليرة السورية",
+          "cost": "التكلفة",
+          "please select a start date": "رجاءً اختر موعد بدء",
         },
         "en": {
           "choose language": "Choose language",
@@ -297,6 +302,11 @@ class MyTranslation extends Translations {
           "please choose 1 category": "Please choose 1 category",
           "you can choose only one category":
               "You can choose only one category",
+          "choose a start date": "Choose a start date",
+          "enter trip cost": "Enter trip cost",
+          "enter the price in syp": "Enter the price in SYP",
+          "cost": "Cost",
+          "please select a start date": "Please select a start date",
         },
       };
 }
