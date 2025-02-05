@@ -32,7 +32,11 @@ class FavoriteControllerImp extends FavoriteController {
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        Get.rawSnackbar(title: "notification".tr, message: "done".tr);
+        Get.snackbar(
+          "notification".tr,
+          "done".tr,
+          snackPosition: SnackPosition.BOTTOM,
+        );
       } else {
         statusRequest = StatusRequest.failure;
       }

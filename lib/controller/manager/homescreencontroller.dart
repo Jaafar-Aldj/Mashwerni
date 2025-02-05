@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mashwerni/controller/manager/addtripcontroller.dart';
 import 'package:mashwerni/controller/settingscontroller.dart';
 import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/page/screen/manager/addtrip.dart';
@@ -45,8 +44,6 @@ class ManagerHomeScreenControllerImp extends ManagerHomeScreenController {
   changePage(int i) {
     if (currentPage == 0) {
       Get.delete<SettingsControllerImp>();
-    } else if (currentPage == 2) {
-      Get.delete<AddTripControllerImp>();
     }
     currentPage = i;
     update();

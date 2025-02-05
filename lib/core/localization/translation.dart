@@ -155,6 +155,7 @@ class MyTranslation extends Translations {
           "enter the price in syp": "أدخل السعر باليرة السورية",
           "cost": "التكلفة",
           "please select a start date": "رجاءً اختر موعد بدء",
+          "passenger number": "عدد الركاب",
         },
         "en": {
           "choose language": "Choose language",
@@ -307,6 +308,7 @@ class MyTranslation extends Translations {
           "enter the price in syp": "Enter the price in SYP",
           "cost": "Cost",
           "please select a start date": "Please select a start date",
+          "passenger number": "Passenger Number",
         },
       };
 }

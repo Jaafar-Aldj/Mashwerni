@@ -5,7 +5,7 @@ class ItemsModel {
   String? description;
   String? descriptionAR;
   String? startDate;
-  String? endDate;
+  int? tripLong;
   String? startLocation;
   int? maxPassengers;
   int? cost;
@@ -24,7 +24,7 @@ class ItemsModel {
     this.description,
     this.descriptionAR,
     this.startDate,
-    this.endDate,
+    this.tripLong,
     this.startLocation,
     this.maxPassengers,
     this.cost,
@@ -44,7 +44,7 @@ class ItemsModel {
     description = json['description'];
     descriptionAR = json['description_ar'];
     startDate = json['start_date'];
-    endDate = json['end_date'];
+    tripLong = json['trip_long'];
     startLocation = json['start_location'];
     maxPassengers = json['max_passengers'];
     cost = json['cost'];
@@ -73,7 +73,7 @@ class ItemsModel {
     data['description'] = description;
     data['description_ar'] = descriptionAR;
     data['start_date'] = startDate;
-    data['end_date'] = endDate;
+    data['trip_long'] = tripLong;
     data['start_location'] = startLocation;
     data['max_passengers'] = maxPassengers;
     data['cost'] = cost;

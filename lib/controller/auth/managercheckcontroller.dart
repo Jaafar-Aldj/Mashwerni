@@ -30,11 +30,7 @@ class ManagerCheckControllerImp extends ManagerCheckController {
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         if (response['data']['is_manager'] == 1) {
-          if (response['manager'] == 0) {
-            Get.offNamed(AppRoute.managerAccount);
-          } else {
-            // Get.offAllNamed(Approute.homeManager);
-          }
+          Get.offNamed(AppRoute.managerAccount);
         } else {
           Get.snackbar(
             "error".tr,
@@ -58,11 +54,7 @@ class ManagerCheckControllerImp extends ManagerCheckController {
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         if (response['data']['is_manager'] == 1) {
-          if (response['manager'] == 0) {
-            Get.offNamed(AppRoute.managerAccount);
-          } else {
-            // Get.offAllNamed(Approute.homeManager);
-          }
+          Get.offNamed(AppRoute.managerAccount);
         }
       } else {
         statusRequest = StatusRequest.failure;

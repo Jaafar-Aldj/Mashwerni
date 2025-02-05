@@ -108,46 +108,49 @@ class AddTripControllerImp extends AddTripController {
   @override
   addTrip() async {
     var formData = key.currentState;
-    if (formData!.validate()) {
-      if (!isSelectionValid()) {
-        Get.snackbar(
-          "error".tr,
-          "please choose one category at least".tr,
-          snackPosition: SnackPosition.BOTTOM,
-        );
-        return;
-      }
-      if (startDate == null) {
-        Get.snackbar(
-          "error".tr,
-          "please select a start date".tr,
-          snackPosition: SnackPosition.BOTTOM,
-        );
-        return;
-      }
-      statusRequest = StatusRequest.loading;
-      var response = await addTripData.postData(
-        managerID: myServices.sharedPreferences.getInt("manager_id").toString(),
-        title: title.text,
-        titleAr: titleAr.text,
-        description: description.text,
-        descriptionAr: descriptionAr.text,
-        startLocation: startLocation.text,
-        startLocationAr: startLocationAr.text,
-        categoryID: selectedCategory.first.categoryID.toString(),
-        cost: rawCostValue,
-        maxPassengers: maxPassengers.toString(),
-        startDate: startDate.toString(),
-        tripLong: tripLong.toString(),
-        destinations: destinations,
+    if (formData == null || !formData.validate()) {
+      return;
+    }
+
+    if (!isSelectionValid()) {
+      Get.snackbar(
+        "error".tr,
+        "please choose one category at least".tr,
+        snackPosition: SnackPosition.BOTTOM,
       );
-      statusRequest = handlingData(response);
-      if (statusRequest == StatusRequest.success) {
-        if (response['status'] == "success") {
-          controller.changePage(3);
-        } else {
-          statusRequest = StatusRequest.failure;
-        }
+      return;
+    }
+    if (startDate == null) {
+      Get.snackbar(
+        "error".tr,
+        "please select a start date".tr,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return;
+    }
+    statusRequest = StatusRequest.loading;
+    var response = await addTripData.postData(
+      managerID: myServices.sharedPreferences.getInt("manager_id").toString(),
+      title: title.text,
+      titleAr: titleAr.text,
+      description: description.text,
+      descriptionAr: descriptionAr.text,
+      startLocation: startLocation.text,
+      startLocationAr: startLocationAr.text,
+      categoryID: selectedCategory.first.categoryID.toString(),
+      cost: rawCostValue,
+      maxPassengers: maxPassengers.toString(),
+      startDate: startDate.toString(),
+      tripLong: tripLong.toString(),
+      destinations: destinations,
+    );
+    statusRequest = handlingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        controller.changePage(3);
+        Get.delete<AddTripControllerImp>();
+      } else {
+        statusRequest = StatusRequest.failure;
       }
     }
     update();

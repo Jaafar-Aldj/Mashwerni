@@ -41,6 +41,7 @@ class ManagerAccount extends StatelessWidget {
                     },
                   ),
                   CustomTextForm(
+                    arabic: true,
                     isNumber: false,
                     hintText: "enter your company name in arabic".tr,
                     labelText: "company name".tr,

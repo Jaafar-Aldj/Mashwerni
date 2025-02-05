@@ -70,9 +70,7 @@ class UserAccountControllerImp extends UserAccountController {
       if (response['status'] == "success") {
         List responseData = response['data'];
         categories.addAll(
-          responseData.map(
-            (e) => CategoriesModel.fromJson(e),
-          ),
+          responseData.map((e) => CategoriesModel.fromJson(e)),
         );
       } else {
         statusRequest = StatusRequest.failure;

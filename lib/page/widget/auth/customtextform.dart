@@ -9,6 +9,7 @@ class CustomTextForm extends StatelessWidget {
   final String? Function(String?) valid;
   final bool isNumber;
   final bool? hideText;
+  final bool? arabic;
   final void Function()? onTapIcon;
   final void Function(String)? onChanged;
   const CustomTextForm({
@@ -20,6 +21,7 @@ class CustomTextForm extends StatelessWidget {
     required this.valid,
     required this.isNumber,
     this.hideText,
+    this.arabic,
     this.onTapIcon,
     this.onChanged,
   });
@@ -29,6 +31,9 @@ class CustomTextForm extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
       child: TextFormField(
+        textDirection: arabic == null || arabic == false
+            ? TextDirection.ltr
+            : TextDirection.rtl,
         onChanged: onChanged,
         obscureText: hideText == null || hideText == false ? false : true,
         keyboardType: isNumber

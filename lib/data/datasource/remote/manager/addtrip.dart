@@ -23,7 +23,6 @@ class AddTripData {
       required}) async {
     Map<String, String> destinationData = {};
     for (int i = 0; i < destinations.length; i++) {
-      // Use destinations.length instead of fixed 5
       String locationEn = destinations[i]["english"]?.text ?? "";
       String locationAr = destinations[i]["arabic"]?.text ?? "";
 
@@ -32,7 +31,7 @@ class AddTripData {
         destinationData["location_${i + 1}_ar"] = locationAr;
       }
     }
-    for (var i = destinationData.length - 1; i < 5; i++) {
+    for (int i = destinationData.length - 1; i < 5; i++) {
       destinationData["location_${i + 1}"] = "";
       destinationData["location_${i + 1}_ar"] = "";
     }

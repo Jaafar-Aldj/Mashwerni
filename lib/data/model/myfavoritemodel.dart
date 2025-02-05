@@ -10,7 +10,7 @@ class MyFavoriteModel {
   String? description;
   String? descriptionAr;
   String? startDate;
-  String? endDate;
+  int? tripLong;
   String? startLocation;
   int? maxPassengers;
   int? cost;
@@ -34,7 +34,7 @@ class MyFavoriteModel {
     this.description,
     this.descriptionAr,
     this.startDate,
-    this.endDate,
+    this.tripLong,
     this.startLocation,
     this.maxPassengers,
     this.cost,
@@ -59,7 +59,7 @@ class MyFavoriteModel {
     description = json['description'];
     descriptionAr = json['description_ar'];
     startDate = json['start_date'];
-    endDate = json['end_date'];
+    tripLong = json['trip_long'];
     startLocation = json['start_location'];
     maxPassengers = json['max_passengers'];
     cost = json['cost'];
@@ -93,7 +93,7 @@ class MyFavoriteModel {
     data['description'] = description;
     data['description_ar'] = descriptionAr;
     data['start_date'] = startDate;
-    data['end_date'] = endDate;
+    data['trip_long'] = tripLong;
     data['start_location'] = startLocation;
     data['max_passengers'] = maxPassengers;
     data['cost'] = cost;
