@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/controller/productdetailcontroller.dart';
+import 'package:mashwerni/core/function/translatedatabase.dart';
 
 class CustomDestination extends GetView<ProductDetailControllerImp> {
   const CustomDestination({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var destinationList = translateDataBase(
+        controller.itemsModel.destinationsAr,
+        controller.itemsModel.destinations);
     return Row(
       children: List.generate(
-        controller.itemsModel.destinations!.length,
+        destinationList.length,
         (index) => Text(
-          "${controller.itemsModel.destinations![index]} ",
+          "${destinationList[index]} ",
           style: context.textTheme.displayMedium,
         ),
       ),

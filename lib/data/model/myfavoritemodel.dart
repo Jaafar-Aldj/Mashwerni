@@ -19,8 +19,10 @@ class MyFavoriteModel {
   String? categoryNameAR;
   int? categoryID;
   String? companyName;
+  String? companyNameAr;
   List? images = [];
   List? destinations = [];
+  List? destinationsAr = [];
 
   MyFavoriteModel({
     this.favoriteId,
@@ -43,7 +45,9 @@ class MyFavoriteModel {
     this.categoryName,
     this.categoryNameAR,
     this.companyName,
+    this.companyNameAr,
     this.destinations,
+    this.destinationsAr,
     this.images,
   });
 
@@ -68,6 +72,7 @@ class MyFavoriteModel {
     categoryName = json['category_name'];
     categoryNameAR = json['category_name_ar'];
     companyName = json['company_name'];
+    companyNameAr = json['company_name_ar'];
     for (var i = 0; i < 5; i++) {
       if (json['image_${i + 1}'] != null) {
         images?.add(json['image_${i + 1}']);
@@ -76,6 +81,11 @@ class MyFavoriteModel {
     for (var i = 0; i < 5; i++) {
       if (json['destination_${i + 1}'] != null) {
         destinations?.add(json['destination_${i + 1}']);
+      }
+    }
+    for (var i = 0; i < 5; i++) {
+      if (json['destination_${i + 1}_ar'] != null) {
+        destinationsAr?.add(json['destination_${i + 1}_ar']);
       }
     }
   }
@@ -102,6 +112,7 @@ class MyFavoriteModel {
     data['category_name'] = categoryName;
     data['category_name_ar'] = categoryNameAR;
     data['company_name'] = companyName;
+    data['company_name_ar'] = companyNameAr;
     for (var i = 0; i < 5; i++) {
       if (images?[i]) {
         data['image_${i + 1}'] = images?[i];
@@ -114,6 +125,13 @@ class MyFavoriteModel {
         data['destination_${i + 1}'] = destinations?[i];
       } else {
         data['destination_${i + 1}'] = null;
+      }
+    }
+    for (var i = 0; i < 5; i++) {
+      if (destinationsAr?[i]) {
+        data['destination_${i + 1}_ar'] = destinationsAr?[i];
+      } else {
+        data['destination_${i + 1}_ar'] = null;
       }
     }
     return data;

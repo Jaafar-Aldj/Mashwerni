@@ -13,8 +13,10 @@ class ItemsModel {
   String? categoryNameAR;
   int? categoryID;
   String? companyName;
+  String? companyNameAr;
   List? images = [];
   List? destinations = [];
+  List? destinationsAr = [];
   int? favorite;
 
   ItemsModel({
@@ -32,7 +34,9 @@ class ItemsModel {
     this.categoryNameAR,
     this.categoryID,
     this.companyName,
+    this.companyNameAr,
     this.destinations,
+    this.destinationsAr,
     this.images,
     this.favorite,
   });
@@ -52,6 +56,7 @@ class ItemsModel {
     categoryName = json['category_name'];
     categoryNameAR = json['category_name_ar'];
     companyName = json['company_name'];
+    companyNameAr = json['company_name_ar'];
     favorite = json['favorite'];
     for (var i = 0; i < 5; i++) {
       if (json['image_${i + 1}'] != null) {
@@ -61,6 +66,11 @@ class ItemsModel {
     for (var i = 0; i < 5; i++) {
       if (json['destination_${i + 1}'] != null) {
         destinations?.add(json['destination_${i + 1}']);
+      }
+    }
+    for (var i = 0; i < 5; i++) {
+      if (json['destination_${i + 1}_ar'] != null) {
+        destinationsAr?.add(json['destination_${i + 1}_ar']);
       }
     }
   }
@@ -81,6 +91,7 @@ class ItemsModel {
     data['category_name'] = categoryName;
     data['category_name_ar'] = categoryNameAR;
     data['company_name'] = companyName;
+    data['company_name_ar'] = companyNameAr;
     data['favorite'] = favorite;
     for (var i = 0; i < 5; i++) {
       if (images?[i]) {
@@ -94,6 +105,13 @@ class ItemsModel {
         data['destination_${i + 1}'] = destinations?[i];
       } else {
         data['destination_${i + 1}'] = null;
+      }
+    }
+    for (var i = 0; i < 5; i++) {
+      if (destinationsAr?[i]) {
+        data['destination_${i + 1}_ar'] = destinationsAr?[i];
+      } else {
+        data['destination_${i + 1}_ar'] = null;
       }
     }
     return data;

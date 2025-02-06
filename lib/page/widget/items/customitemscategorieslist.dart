@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mashwerni/controller/itemscontroller.dart';
 import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/core/function/translatedatabase.dart';
-import 'package:mashwerni/data/model/categoriesmodel.dart';
 
 class CustomItemsCategoriesList extends GetView<ItemsControllerImp> {
   const CustomItemsCategoriesList({super.key});
@@ -18,9 +17,8 @@ class CustomItemsCategoriesList extends GetView<ItemsControllerImp> {
         itemCount: controller.categories.length,
         itemBuilder: (context, index) {
           return Categories(
-              catIndex: index,
-              categoriesModel:
-                  CategoriesModel.fromJson(controller.categories[index]));
+            catIndex: index,
+          );
         },
       ),
     );
@@ -28,11 +26,9 @@ class CustomItemsCategoriesList extends GetView<ItemsControllerImp> {
 }
 
 class Categories extends GetView<ItemsControllerImp> {
-  final CategoriesModel categoriesModel;
   final int catIndex;
   const Categories({
     super.key,
-    required this.categoriesModel,
     required this.catIndex,
   });
 
@@ -56,7 +52,10 @@ class Categories extends GetView<ItemsControllerImp> {
               ),
             ),
             child: Text(
-              "${translateDataBase(categoriesModel.categoryNameAr, categoriesModel.categoryName)}",
+              "${translateDataBase(
+                controller.categories[catIndex].categoryNameAr,
+                controller.categories[catIndex].categoryName,
+              )}",
               style: TextStyle(fontSize: 20, color: AppColor.primaryText),
             ),
           ),

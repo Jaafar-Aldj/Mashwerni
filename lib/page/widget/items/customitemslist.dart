@@ -5,23 +5,19 @@ import 'package:mashwerni/controller/favoritecontroller.dart';
 import 'package:mashwerni/controller/itemscontroller.dart';
 import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/core/function/translatedatabase.dart';
-import 'package:mashwerni/data/model/itemsmodel.dart';
 import 'package:mashwerni/linkapi.dart';
 
 class CustomItemsList extends GetView<ItemsControllerImp> {
-  final ItemsModel itemsModel;
-  const CustomItemsList({
-    super.key,
-    required this.itemsModel,
-  });
+  final int index;
+  const CustomItemsList({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
     Get.put(FavoriteControllerImp);
-    List revImages = itemsModel.images!.reversed.toList();
+    List revImages = controller.items[index].images!.reversed.toList();
     return InkWell(
       onTap: () {
-        controller.goToPageProductDetails(itemsModel);
+        controller.goToPageProductDetails(controller.items[index]);
       },
       child: Card(
         child: Padding(
@@ -31,7 +27,7 @@ class CustomItemsList extends GetView<ItemsControllerImp> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Hero(
-                tag: "${itemsModel.tripNum}",
+                tag: "${controller.items[index].tripNum}",
                 child: CachedNetworkImage(
                   imageUrl: "${AppLink.imageItems}/${revImages[0]}",
                   height: 100,
@@ -39,32 +35,41 @@ class CustomItemsList extends GetView<ItemsControllerImp> {
                 ),
               ),
               Text(
-                translateDataBase(itemsModel.titleAR!, itemsModel.title!),
+                translateDataBase(controller.items[index].titleAR!,
+                    controller.items[index].title!),
                 style: context.textTheme.titleMedium,
               ),
               Text(
-                "${"by".tr} ${itemsModel.companyName}",
+                "${"by".tr} ${translateDataBase(controller.items[index].companyNameAr, controller.items[index].companyName)}",
                 style: context.textTheme.titleSmall,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("${itemsModel.cost} ${"syp".tr}"),
+                  Text("${controller.items[index].cost} ${"syp".tr}"),
                   GetBuilder<FavoriteControllerImp>(
                     builder: (favController) => IconButton(
                       icon: Icon(
-                        favController.isFavorite[itemsModel.tripNum] == 1
+                        favController.isFavorite[
+                                    controller.items[index].tripNum] ==
+                                1
                             ? Icons.favorite
                             : Icons.favorite_border,
                         color: AppColor.accent,
                       ),
                       onPressed: () {
-                        if (favController.isFavorite[itemsModel.tripNum] == 1) {
-                          favController.setFavorite(itemsModel.tripNum!, 0);
-                          favController.removeFavorite(itemsModel.tripNum!);
+                        if (favController
+                                .isFavorite[controller.items[index].tripNum] ==
+                            1) {
+                          favController.setFavorite(
+                              controller.items[index].tripNum!, 0);
+                          favController
+                              .removeFavorite(controller.items[index].tripNum!);
                         } else {
-                          favController.setFavorite(itemsModel.tripNum!, 1);
-                          favController.addFavorite(itemsModel.tripNum!);
+                          favController.setFavorite(
+                              controller.items[index].tripNum!, 1);
+                          favController
+                              .addFavorite(controller.items[index].tripNum!);
                         }
                       },
                     ),

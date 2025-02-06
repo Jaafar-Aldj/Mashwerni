@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mashwerni/controller/favoritecontroller.dart';
 import 'package:mashwerni/controller/itemscontroller.dart';
 import 'package:mashwerni/core/class/handlingdataview.dart';
-import 'package:mashwerni/data/model/itemsmodel.dart';
 import 'package:mashwerni/page/widget/customappbar.dart';
 import 'package:mashwerni/page/widget/items/customitemscategorieslist.dart';
 import 'package:mashwerni/page/widget/items/customitemslist.dart';
@@ -33,17 +32,15 @@ class ItemsPage extends StatelessWidget {
                 widget: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, childAspectRatio: 0.8),
-                  itemCount: controller.data.length,
+                  itemCount: controller.items.length,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     favoriteController.setFavorite(
-                      controller.data[index]['trip_num'],
-                      controller.data[index]['favorite'],
+                      controller.items[index].tripNum!,
+                      controller.items[index].favorite!,
                     );
-                    return CustomItemsList(
-                      itemsModel: ItemsModel.fromJson(controller.data[index]),
-                    );
+                    return CustomItemsList(index: index);
                   },
                 ),
               ),

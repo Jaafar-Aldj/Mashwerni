@@ -42,7 +42,7 @@ class CustomFavoriteItemsList extends GetView<MyFavoriteControllerImp> {
                 style: context.textTheme.titleMedium,
               ),
               Text(
-                "${"by".tr} ${itemsModel.companyName}",
+                "${"by".tr} ${translateDataBase(itemsModel.companyNameAr, itemsModel.companyName)}",
                 style: context.textTheme.titleSmall,
               ),
               Row(

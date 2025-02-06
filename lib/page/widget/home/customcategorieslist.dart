@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:mashwerni/controller/homecontroller.dart';
 import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/core/function/translatedatabase.dart';
-import 'package:mashwerni/data/model/categoriesmodel.dart';
 import 'package:mashwerni/linkapi.dart';
 
 class CustomCategoriesList extends GetView<HomeControllerImp> {
@@ -19,10 +18,7 @@ class CustomCategoriesList extends GetView<HomeControllerImp> {
         scrollDirection: Axis.horizontal,
         itemCount: controller.categories.length,
         itemBuilder: (context, index) {
-          return Categories(
-              catIndex: index,
-              categoriesModel:
-                  CategoriesModel.fromJson(controller.categories[index]));
+          return Categories(catIndex: index);
         },
       ),
     );
@@ -30,11 +26,9 @@ class CustomCategoriesList extends GetView<HomeControllerImp> {
 }
 
 class Categories extends GetView<HomeControllerImp> {
-  final CategoriesModel categoriesModel;
   final int catIndex;
   const Categories({
     super.key,
-    required this.categoriesModel,
     required this.catIndex,
   });
 
@@ -55,13 +49,13 @@ class Categories extends GetView<HomeControllerImp> {
             height: 70,
             width: 70,
             child: SvgPicture.network(
-              "${AppLink.imageCategories}/${categoriesModel.categoryImage}",
+              "${AppLink.imageCategories}/${controller.categories[catIndex].categoryImage}",
               colorFilter:
                   ColorFilter.mode(AppColor.darkPrimary, BlendMode.srcIn),
             ),
           ),
           Text(
-            "${translateDataBase(categoriesModel.categoryNameAr, categoriesModel.categoryName)}",
+            "${translateDataBase(controller.categories[catIndex].categoryNameAr, controller.categories[catIndex].categoryName)}",
             style: TextStyle(fontSize: 14, color: AppColor.primaryText),
           ),
         ],

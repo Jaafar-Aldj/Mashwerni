@@ -4,10 +4,11 @@ import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/core/function/handlingdatacontroller.dart';
 import 'package:mashwerni/core/service/services.dart';
 import 'package:mashwerni/data/datasource/remote/homedata.dart';
+import 'package:mashwerni/data/model/categoriesmodel.dart';
 
 abstract class HomeController extends GetxController {
   getData();
-  goToItems(List categories, int selectedCat);
+  goToItems(List<CategoriesModel> categories, int selectedCat);
 }
 
 class HomeControllerImp extends HomeController {
@@ -18,7 +19,7 @@ class HomeControllerImp extends HomeController {
   int? userID;
   StatusRequest? statusRequest;
   HomeData homeData = HomeData(Get.find());
-  List categories = [];
+  List<CategoriesModel> categories = [];
   List items = [];
 
   @override
@@ -28,7 +29,9 @@ class HomeControllerImp extends HomeController {
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        categories.addAll(response['categories']);
+        List categoriesResponse = response['categories'];
+        categories
+            .addAll(categoriesResponse.map((e) => CategoriesModel.fromJson(e)));
         items.addAll(response['items']);
       } else {
         statusRequest = StatusRequest.failure;
@@ -52,7 +55,7 @@ class HomeControllerImp extends HomeController {
   }
 
   @override
-  goToItems(List categories, int selectedCat) {
+  goToItems(List<CategoriesModel> categories, int selectedCat) {
     Get.toNamed(AppRoute.items, arguments: {
       "categories": categories,
       "selectedCat": selectedCat,
