@@ -23,7 +23,7 @@ import 'package:mashwerni/page/screen/manager/addtrip.dart';
 import 'package:mashwerni/page/screen/manager/managerhomescreen.dart';
 import 'package:mashwerni/page/screen/myfavorite.dart';
 import 'package:mashwerni/page/screen/onboarding.dart';
-import 'package:mashwerni/page/screen/productdetails.dart';
+import 'package:mashwerni/page/screen/tripdetails.dart';
 import 'package:mashwerni/page/screen/profile.dart';
 import 'package:mashwerni/page/screen/settings.dart';
 import 'package:mashwerni/page/screen/mytrips.dart';
@@ -37,7 +37,7 @@ List<GetPage<dynamic>>? routes = [
     page: () => Language(),
     middlewares: [MyMiddleware()],
   ),
-  // GetPage(name: "/", page: () => Login()),
+  // GetPage(name: "/", page: () => Language()),
   GetPage(name: AppRoute.onBoarding, page: () => OnBoarding()),
 
   // Auth
@@ -58,7 +58,7 @@ List<GetPage<dynamic>>? routes = [
   // Home
   GetPage(name: AppRoute.homeScreen, page: () => HomeScreen()),
   GetPage(name: AppRoute.items, page: () => ItemsPage()),
-  GetPage(name: AppRoute.product, page: () => ProductDetails()),
+  GetPage(name: AppRoute.trip, page: () => TripDetails()),
   GetPage(name: AppRoute.myFavorite, page: () => MyFavorite()),
   GetPage(name: AppRoute.home, page: () => Home()),
   GetPage(name: AppRoute.profile, page: () => Profile()),

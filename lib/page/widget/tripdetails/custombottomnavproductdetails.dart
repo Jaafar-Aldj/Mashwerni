@@ -16,7 +16,7 @@ class CustomBottomNavProductDetails extends StatelessWidget {
         color: AppColor.primary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Text(
-          "booking".tr,
+          "book".tr,
           style: TextStyle(
             color: AppColor.textAndIcon,
             fontWeight: FontWeight.bold,

@@ -32,7 +32,11 @@ class HomeControllerImp extends HomeController {
         List categoriesResponse = response['categories'];
         categories
             .addAll(categoriesResponse.map((e) => CategoriesModel.fromJson(e)));
-        items.addAll(response['items']);
+        if (response['items'] is! String) {
+          // List itemsResponse = response['items'];
+          //   items.addAll(itemsResponse.map((e)=>ItemsModel.fromJson(e)));s
+          items.addAll(response['items']);
+        }
       } else {
         statusRequest = StatusRequest.failure;
       }

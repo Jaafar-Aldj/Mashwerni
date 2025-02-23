@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mashwerni/controller/productdetailcontroller.dart';
+import 'package:mashwerni/controller/tripdetailcontroller.dart';
 import 'package:mashwerni/core/function/translatedatabase.dart';
 
-class CustomDestination extends GetView<ProductDetailControllerImp> {
+class CustomDestination extends GetView<TripDetailControllerImp> {
   const CustomDestination({super.key});
 
   @override

@@ -2,15 +2,15 @@ import 'package:get/get.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
 import 'package:mashwerni/core/function/handlingdatacontroller.dart';
 import 'package:mashwerni/core/service/services.dart';
-import 'package:mashwerni/data/datasource/remote/mytrips.dart';
+import 'package:mashwerni/data/datasource/remote/manager/manager_mytrips.dart';
 import 'package:mashwerni/data/model/itemsmodel.dart';
 
-abstract class MyTripsController extends GetxController {
+abstract class ManagerMyTripsController extends GetxController {
   getData();
 }
 
-class MyTripsControllerImp extends MyTripsController {
-  MyTripsData myTripsData = MyTripsData(Get.find());
+class ManagerMyTripsControllerImp extends ManagerMyTripsController {
+  ManagerMyTripsData myTripsData = ManagerMyTripsData(Get.find());
   MyServices myServices = Get.find();
   StatusRequest? statusRequest;
   List<ItemsModel> upComingTrips = [];
@@ -20,7 +20,7 @@ class MyTripsControllerImp extends MyTripsController {
   getData() async {
     statusRequest = StatusRequest.loading;
     var response = await myTripsData
-        .getData(myServices.sharedPreferences.getInt('user_id')!);
+        .getData(myServices.sharedPreferences.getInt('manager_id')!);
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {

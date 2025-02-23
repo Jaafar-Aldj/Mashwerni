@@ -29,13 +29,21 @@ class AppLink {
   static const String home = "$server/home/home.php";
   static const String items = "$server/trip/items.php";
   static const String categories = "$server/categories/view.php";
+  static const String myTrips = "$server/mytrips/user_mytrips.php";
 
-  // favorite
+  // Favorite
   static const String addFav = "$server/trip/add_favorite.php";
   static const String removeFav = "$server/trip/remove_favorite.php";
   static const String viewMyFavorite = "$server/trip/view_my_favorite.php";
   static const String deleteFavorite = "$server/trip/delete_favorite.php";
 
+  // Booking
+  static const String book = "$server/booking/book.php";
+  static const String bookingCount = "$server/booking/count_to_user.php";
+
   //  =====================Manager===================
   static const String addTrip = "$server/trip/add_trip.php";
+  static const String bookingCountManager =
+      "$server/booking/count_to_manager.php";
+  static const String managerMyTrips = "$server/mytrips/manager_mytrips.php";
 }

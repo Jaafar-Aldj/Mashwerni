@@ -62,7 +62,7 @@ class ItemsControllerImp extends ItemsController {
 
   @override
   goToPageProductDetails(ItemsModel itemsModel) {
-    Get.toNamed(AppRoute.product, arguments: {
+    Get.toNamed(AppRoute.trip, arguments: {
       "itemsModel": itemsModel,
     });
   }

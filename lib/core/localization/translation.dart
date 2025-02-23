@@ -84,7 +84,7 @@ class MyTranslation extends Translations {
           "syp": "ل.س",
           "by": "بواسطة",
           "destination": "الوجهة :",
-          "booking": "حجز",
+          "book": "احجز الآن",
           "notification": "إشعار",
           "done": "تم",
           "resend code": "إعادة إرسال الرمز",
@@ -156,6 +156,9 @@ class MyTranslation extends Translations {
           "cost": "التكلفة",
           "please select a start date": "رجاءً اختر موعد بدء",
           "passenger number": "عدد الركاب",
+          "days left": "أيام متبقية",
+          "no upcoming trips": "لا يوجد رحلات قادمة",
+          "no last trips": "لا يوجد رحلات سابقة",
         },
         "en": {
           "choose language": "Choose language",
@@ -237,7 +240,7 @@ class MyTranslation extends Translations {
           "syp": "SYP",
           "by": "By",
           "destination": "Destination :",
-          "booking": "Booking",
+          "book": "Book Now",
           "notification": "Notification",
           "done": "Done",
           "resend code": "Resend Code",
@@ -309,6 +312,9 @@ class MyTranslation extends Translations {
           "cost": "Cost",
           "please select a start date": "Please select a start date",
           "passenger number": "Passenger Number",
+          "days left": "Days left",
+          "no upcoming trips": "No upcoming trips",
+          "no last trips": "No last trips",
         },
       };
 }

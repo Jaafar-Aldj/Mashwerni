@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mashwerni/controller/productdetailcontroller.dart';
+import 'package:mashwerni/controller/tripdetailcontroller.dart';
 import 'package:mashwerni/core/constant/color.dart';
 
-class CustomPriceAndCount extends GetView<ProductDetailControllerImp> {
+class CustomPriceAndCount extends GetView<TripDetailControllerImp> {
   final void Function()? onAdd;
   final void Function()? onRemove;
   final String count;

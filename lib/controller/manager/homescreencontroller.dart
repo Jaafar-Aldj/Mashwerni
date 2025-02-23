@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mashwerni/controller/manager/managermytripscontroller.dart';
 import 'package:mashwerni/controller/settingscontroller.dart';
 import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/page/screen/manager/addtrip.dart';
+import 'package:mashwerni/page/screen/manager/managermytrips.dart';
 import 'package:mashwerni/page/screen/profile.dart';
 import 'package:mashwerni/page/screen/settings.dart';
-import 'package:mashwerni/page/screen/mytrips.dart';
 
 abstract class ManagerHomeScreenController extends GetxController {
   changePage(int i);
@@ -33,7 +34,7 @@ class ManagerHomeScreenControllerImp extends ManagerHomeScreenController {
       "route": AppRoute.addTrip,
     },
     {
-      "widget": MyTrips(),
+      "widget": ManagerMyTrips(),
       "title": "my trips".tr,
       "icon": Icons.rocket_launch_outlined,
       "route": AppRoute.myTrips,
@@ -44,6 +45,9 @@ class ManagerHomeScreenControllerImp extends ManagerHomeScreenController {
   changePage(int i) {
     if (currentPage == 0) {
       Get.delete<SettingsControllerImp>();
+    }
+    if (currentPage == 3) {
+      Get.delete<ManagerMyTripsControllerImp>();
     }
     currentPage = i;
     update();

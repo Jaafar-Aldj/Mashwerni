@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mashwerni/controller/mytripscontroller.dart';
+import 'package:mashwerni/controller/manager/managermytripscontroller.dart';
 import 'package:mashwerni/core/class/handlingdataview.dart';
 import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/core/function/translatedatabase.dart';
@@ -9,15 +9,15 @@ import 'package:mashwerni/page/widget/customappbar.dart';
 import 'package:mashwerni/page/widget/mytrips/customlasttripscard.dart';
 import 'package:mashwerni/page/widget/mytrips/customtripcard.dart';
 
-class MyTrips extends StatelessWidget {
-  const MyTrips({super.key});
+class ManagerMyTrips extends StatelessWidget {
+  const ManagerMyTrips({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MyTripsControllerImp());
+    Get.put(ManagerMyTripsControllerImp());
     return Padding(
       padding: const EdgeInsets.all(13),
-      child: GetBuilder<MyTripsControllerImp>(
+      child: GetBuilder<ManagerMyTripsControllerImp>(
         builder: (controller) => HandlingDataView(
           statusRequest: controller.statusRequest,
           widget: ListView(
