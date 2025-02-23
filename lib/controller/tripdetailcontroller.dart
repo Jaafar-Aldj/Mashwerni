@@ -9,6 +9,7 @@ abstract class TripDetailController extends GetxController {
   book();
   add();
   remove();
+  changeImage();
 }
 
 class TripDetailControllerImp extends TripDetailController {
@@ -67,5 +68,10 @@ class TripDetailControllerImp extends TripDetailController {
   void onInit() {
     initialData();
     super.onInit();
+  }
+
+  @override
+  changeImage() {
+    update();
   }
 }

@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/controller/tripdetailcontroller.dart';
@@ -11,6 +10,7 @@ class CustomTopProductDetails extends GetView<TripDetailControllerImp> {
 
   @override
   Widget build(BuildContext context) {
+    int currentIndex = 0;
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -32,36 +32,49 @@ class CustomTopProductDetails extends GetView<TripDetailControllerImp> {
             child: SizedBox(
               width: 250,
               height: 160,
-              child: CarouselSlider.builder(
+              child: PageView.builder(
+                onPageChanged: (index) {
+                  currentIndex = index;
+                  controller.changeImage();
+                },
                 itemCount: controller.itemsModel.images?.length ?? 0,
-                itemBuilder: (BuildContext context, int index, int realIndex) {
+                itemBuilder: (context, index) {
                   return CachedNetworkImage(
                     imageUrl:
                         "${AppLink.imageItems}/${controller.itemsModel.images![index]}",
                     fit: BoxFit.contain,
                   );
                 },
-                options: CarouselOptions(
-                  height: 160,
-                  enlargeCenterPage: true,
-                  enableInfiniteScroll: true,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
-                ),
               ),
-              // PageView.builder(
-              //   itemCount: controller.itemsModel.images?.length ?? 0,
-              //   itemBuilder: (context, index) {
-              //     return CachedNetworkImage(
-              //       imageUrl:
-              //           "${AppLink.imageItems}/${controller.itemsModel.images![index]}",
-              //       fit: BoxFit.contain,
-              //     );
-              //   },
-              // ),
             ),
           ),
-        )
+        ),
+        GetBuilder<TripDetailControllerImp>(
+          builder: (controller) => Positioned(
+            top: 50, // تحديد موقع النقاط
+            left: Get.width / 8,
+            right: Get.width / 8,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                controller.itemsModel.images?.length ?? 0,
+                (index) => AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  height: 8,
+                  width:
+                      currentIndex == index ? 12 : 8, // تغيير الحجم عند التحديد
+                  decoration: BoxDecoration(
+                    color: currentIndex == index
+                        ? AppColor.primary // اللون عند التحديد
+                        : AppColor.secondryText, // اللون الافتراضي
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

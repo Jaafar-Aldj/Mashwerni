@@ -43,7 +43,7 @@ class CustomPriceAndCount extends GetView<TripDetailControllerImp> {
         ),
         Spacer(),
         Text(
-          "${controller.itemsModel.cost} ${"syp".tr}",
+          "${controller.itemsModel.cost! * controller.count} ${"syp".tr}",
           style: TextStyle(
             color: AppColor.darkPrimary,
             fontSize: 25,
