@@ -50,7 +50,7 @@ class Items extends StatelessWidget {
             top: 10,
             left: 30,
             child: Text(
-              "${translateDataBase(itemsModel.titleAR, itemsModel.title)}",
+              "${translateDataBase(itemsModel.titleAr, itemsModel.title)}",
               style: TextStyle(
                   color: AppColor.textAndIcon,
                   fontWeight: FontWeight.bold,

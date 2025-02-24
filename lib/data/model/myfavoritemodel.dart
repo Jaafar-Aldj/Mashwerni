@@ -12,11 +12,12 @@ class MyFavoriteModel {
   String? startDate;
   int? tripLong;
   String? startLocation;
+  String? startLocationAr;
   int? maxPassengers;
   int? cost;
   int? iD;
   String? categoryName;
-  String? categoryNameAR;
+  String? categoryNameAr;
   int? categoryID;
   String? companyName;
   String? companyNameAr;
@@ -38,12 +39,13 @@ class MyFavoriteModel {
     this.startDate,
     this.tripLong,
     this.startLocation,
+    this.startLocationAr,
     this.maxPassengers,
     this.cost,
     this.iD,
     this.categoryID,
     this.categoryName,
-    this.categoryNameAR,
+    this.categoryNameAr,
     this.companyName,
     this.companyNameAr,
     this.destinations,
@@ -65,12 +67,13 @@ class MyFavoriteModel {
     startDate = json['start_date'];
     tripLong = json['trip_long'];
     startLocation = json['start_location'];
+    startLocationAr = json['start_location_ar'];
     maxPassengers = json['max_passengers'];
     cost = json['cost'];
     iD = json['ID'];
     categoryID = json['category_id'];
     categoryName = json['category_name'];
-    categoryNameAR = json['category_name_ar'];
+    categoryNameAr = json['category_name_ar'];
     companyName = json['company_name'];
     companyNameAr = json['company_name_ar'];
     for (var i = 0; i < 5; i++) {
@@ -104,13 +107,13 @@ class MyFavoriteModel {
     data['description_ar'] = descriptionAr;
     data['start_date'] = startDate;
     data['trip_long'] = tripLong;
-    data['start_location'] = startLocation;
+    data['start_location_ar'] = startLocationAr;
     data['max_passengers'] = maxPassengers;
     data['cost'] = cost;
     data['ID'] = iD;
     data['category_id'] = categoryID;
     data['category_name'] = categoryName;
-    data['category_name_ar'] = categoryNameAR;
+    data['category_name_ar'] = categoryNameAr;
     data['company_name'] = companyName;
     data['company_name_ar'] = companyNameAr;
     for (var i = 0; i < 5; i++) {

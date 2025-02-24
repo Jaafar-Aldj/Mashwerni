@@ -20,7 +20,7 @@ class CustomFavoriteItemsList extends GetView<MyFavoriteControllerImp> {
     List revImages = itemsModel.images!.reversed.toList();
     return InkWell(
       onTap: () {
-        // controller.goToPageProductDetails(itemsModel);
+        controller.goToTripView(itemsModel);
       },
       child: Card(
         child: Padding(

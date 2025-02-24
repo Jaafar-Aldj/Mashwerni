@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mashwerni/controller/tripdetailcontroller.dart';
+import 'package:mashwerni/controller/tripviewcontroller.dart';
 import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/core/function/translatedatabase.dart';
-import 'package:mashwerni/page/widget/tripdetails/custombottomnavproductdetails.dart';
-import 'package:mashwerni/page/widget/tripdetails/customdestination.dart';
-import 'package:mashwerni/page/widget/tripdetails/custompriceandcount.dart';
-import 'package:mashwerni/page/widget/tripdetails/customtopproductdetails.dart';
+import 'package:mashwerni/page/widget/tripview/customviewdestination.dart';
+import 'package:mashwerni/page/widget/tripview/customviewtopproductdetails.dart';
 
-class TripDetails extends StatelessWidget {
-  const TripDetails({super.key});
+class TripView extends StatelessWidget {
+  const TripView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TripDetailControllerImp controller = Get.put(TripDetailControllerImp());
+    TripViewControllerImp controller = Get.put(TripViewControllerImp());
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavProductDetails(
-        onPressed: controller.book,
-      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomTopProductDetails(),
+            CustomViewTopProductDetails(),
             SizedBox(height: 70),
             Container(
               padding: EdgeInsets.all(20),
@@ -48,14 +43,6 @@ class TripDetails extends StatelessWidget {
                         fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   SizedBox(height: 10),
-                  GetBuilder<TripDetailControllerImp>(
-                    builder: (controller) => CustomPriceAndCount(
-                      onAdd: controller.add,
-                      onRemove: controller.remove,
-                      count: controller.count.toString(),
-                    ),
-                  ),
-                  SizedBox(height: 15),
                   Text(
                     "${translateDataBase(controller.itemsModel.descriptionAr, controller.itemsModel.description)}",
                     style: context.textTheme.bodyLarge?.copyWith(fontSize: 16),
@@ -67,7 +54,7 @@ class TripDetails extends StatelessWidget {
                         fontWeight: FontWeight.bold, color: Colors.black87),
                   ),
                   SizedBox(height: 10),
-                  CustomDestination(),
+                  CustomViewDestination(),
                   SizedBox(height: 20),
                   Text(
                     "${"start date".tr} ${controller.itemsModel.startDate}",
@@ -85,7 +72,7 @@ class TripDetails extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    "${"company".tr} ${controller.itemsModel.companyName}",
+                    "${"company".tr} ${translateDataBase(controller.itemsModel.companyNameAr, controller.itemsModel.companyName)}",
                     style: context.textTheme.bodyLarge?.copyWith(fontSize: 16),
                   ),
                   SizedBox(height: 10),
@@ -94,9 +81,12 @@ class TripDetails extends StatelessWidget {
                     style: context.textTheme.bodyLarge?.copyWith(fontSize: 16),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    "${"seats left".tr} ${controller.itemsModel.seatsLeft}",
-                    style: context.textTheme.bodyLarge?.copyWith(fontSize: 16),
+                  GetBuilder<TripViewControllerImp>(
+                    builder: (controller) => Text(
+                      "${"seats booked".tr} ${controller.count}",
+                      style:
+                          context.textTheme.bodyLarge?.copyWith(fontSize: 16),
+                    ),
                   ),
                   SizedBox(height: 10),
                   Text(

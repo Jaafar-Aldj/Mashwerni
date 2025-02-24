@@ -42,7 +42,10 @@ class ManagerMyTrips extends StatelessWidget {
                       itemBuilder: (context, index) {
                         ItemsModel trip = controller.upComingTrips[index];
                         return CustomTripCard(
-                          title: translateDataBase(trip.titleAR, trip.title),
+                          onTap: () {
+                            controller.goToManagerTripView(trip);
+                          },
+                          title: translateDataBase(trip.titleAr, trip.title),
                           manager: translateDataBase(
                               trip.companyNameAr, trip.companyName),
                           daysLeft: trip.daysLeft!,
@@ -69,7 +72,10 @@ class ManagerMyTrips extends StatelessWidget {
                       itemBuilder: (context, index) {
                         ItemsModel trip = controller.lastTrips[index];
                         return CustomLastTripCard(
-                          title: translateDataBase(trip.titleAR, trip.title),
+                          onTap: () {
+                            controller.goToManagerTripView(trip);
+                          },
+                          title: translateDataBase(trip.titleAr, trip.title),
                           manager: translateDataBase(
                               trip.companyNameAr, trip.companyName),
                           image: trip.images![0],

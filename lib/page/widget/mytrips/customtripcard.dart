@@ -8,36 +8,42 @@ class CustomTripCard extends StatelessWidget {
   final String manager;
   final int daysLeft;
   final String image;
-  const CustomTripCard(
-      {super.key,
-      required this.title,
-      required this.manager,
-      required this.daysLeft,
-      required this.image});
+  final void Function()? onTap;
+  const CustomTripCard({
+    super.key,
+    required this.title,
+    required this.manager,
+    required this.daysLeft,
+    required this.image,
+    this.onTap,
+  });
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: Text(title),
-        subtitle: Text(manager),
-        trailing: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              "$daysLeft ${"days left".tr}",
-              style: TextStyle(fontSize: 14),
+    return InkWell(
+      onTap: onTap,
+      child: Card(
+        child: ListTile(
+          title: Text(title),
+          subtitle: Text(manager),
+          trailing: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "$daysLeft ${"days left".tr}",
+                style: TextStyle(fontSize: 14),
+              ),
+              Spacer(),
+              Icon(Icons.rocket_outlined),
+            ],
+          ),
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: CachedNetworkImage(
+              imageUrl: "${AppLink.imageItems}/$image",
+              width: 50,
+              height: 50,
+              fit: BoxFit.cover,
             ),
-            Spacer(),
-            Icon(Icons.rocket_outlined),
-          ],
-        ),
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: CachedNetworkImage(
-            imageUrl: "${AppLink.imageItems}/$image",
-            width: 50,
-            height: 50,
-            fit: BoxFit.cover,
           ),
         ),
       ),

@@ -35,7 +35,7 @@ class CustomItemsList extends GetView<ItemsControllerImp> {
                 ),
               ),
               Text(
-                translateDataBase(controller.items[index].titleAR!,
+                translateDataBase(controller.items[index].titleAr!,
                     controller.items[index].title!),
                 style: context.textTheme.titleMedium,
               ),

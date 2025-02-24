@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
+import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/core/function/handlingdatacontroller.dart';
 import 'package:mashwerni/core/service/services.dart';
 import 'package:mashwerni/data/datasource/remote/myfavoritedata.dart';
@@ -8,6 +9,7 @@ import 'package:mashwerni/data/model/myfavoritemodel.dart';
 abstract class MyFavoriteController extends GetxController {
   getData();
   deleteFavorite(int favoriteID);
+  goToTripView(MyFavoriteModel itemModel);
 }
 
 class MyFavoriteControllerImp extends MyFavoriteController {
@@ -59,5 +61,12 @@ class MyFavoriteControllerImp extends MyFavoriteController {
   void onInit() {
     getData();
     super.onInit();
+  }
+
+  @override
+  goToTripView(MyFavoriteModel itemModel) {
+    Get.toNamed(AppRoute.tripView, arguments: {
+      "itemsModel": itemModel,
+    });
   }
 }

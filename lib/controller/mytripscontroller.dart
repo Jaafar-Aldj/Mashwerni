@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
+import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/core/function/handlingdatacontroller.dart';
 import 'package:mashwerni/core/service/services.dart';
 import 'package:mashwerni/data/datasource/remote/mytrips.dart';
@@ -7,6 +8,7 @@ import 'package:mashwerni/data/model/itemsmodel.dart';
 
 abstract class MyTripsController extends GetxController {
   getData();
+  goToTripView(ItemsModel itemModel);
 }
 
 class MyTripsControllerImp extends MyTripsController {
@@ -47,5 +49,10 @@ class MyTripsControllerImp extends MyTripsController {
   void onInit() {
     getData();
     super.onInit();
+  }
+
+  @override
+  goToTripView(ItemsModel itemModel) {
+    Get.toNamed(AppRoute.tripView, arguments: {"itemsModel": itemModel});
   }
 }

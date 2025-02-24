@@ -24,8 +24,10 @@ class AppRoute {
   static String profile = "/profile";
   static String settings = "/settings";
   static String myTrips = "/trips";
+  static String tripView = "/tripview";
 
   // =====================Manager====================
   static String managerHomeScreen = "/managerhomescreen";
   static String addTrip = "/addtrip";
+  static String managerTripView = "/managertripview";
 }

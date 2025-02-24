@@ -21,12 +21,14 @@ import 'package:mashwerni/page/screen/items.dart';
 import 'package:mashwerni/page/screen/language.dart';
 import 'package:mashwerni/page/screen/manager/addtrip.dart';
 import 'package:mashwerni/page/screen/manager/managerhomescreen.dart';
+import 'package:mashwerni/page/screen/manager/managertripview.dart';
 import 'package:mashwerni/page/screen/myfavorite.dart';
 import 'package:mashwerni/page/screen/onboarding.dart';
 import 'package:mashwerni/page/screen/tripdetails.dart';
 import 'package:mashwerni/page/screen/profile.dart';
 import 'package:mashwerni/page/screen/settings.dart';
 import 'package:mashwerni/page/screen/mytrips.dart';
+import 'package:mashwerni/page/screen/tripview.dart';
 import 'package:mashwerni/page/widget/home/customitemslisthome.dart';
 import 'package:mashwerni/test.dart';
 import 'package:mashwerni/testpage.dart';
@@ -64,8 +66,10 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.profile, page: () => Profile()),
   GetPage(name: AppRoute.settings, page: () => Settings()),
   GetPage(name: AppRoute.myTrips, page: () => MyTrips()),
+  GetPage(name: AppRoute.tripView, page: () => TripView()),
 
   // ==========================Manager=====================
   GetPage(name: AppRoute.managerHomeScreen, page: () => ManagerHomeScreen()),
   GetPage(name: AppRoute.addTrip, page: () => AddTrip()),
+  GetPage(name: AppRoute.managerTripView, page: () => ManagerTripView()),
 ];
