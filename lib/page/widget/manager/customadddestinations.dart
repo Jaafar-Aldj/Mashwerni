@@ -12,7 +12,7 @@ class CustomAddDestinations extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text("Add Destinations",
+        Text("add destinations".tr,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         GetBuilder<AddTripControllerImp>(
           builder: (controller) => Column(
@@ -27,7 +27,8 @@ class CustomAddDestinations extends StatelessWidget {
                       },
                       controller: controller.destinations[i]["english"],
                       decoration: InputDecoration(
-                        labelText: "Destination ${i + 1} (English)",
+                        labelText:
+                            "${"destination".tr} ${i + 1} ${"(english)".tr}",
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -39,7 +40,8 @@ class CustomAddDestinations extends StatelessWidget {
                       controller: controller.destinations[i]["arabic"],
                       textDirection: TextDirection.rtl,
                       decoration: InputDecoration(
-                        labelText: "Destination ${i + 1} (Arabic)",
+                        labelText:
+                            "${"destination".tr} ${i + 1} ${"(arabic)".tr}",
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -57,7 +59,7 @@ class CustomAddDestinations extends StatelessWidget {
               if (controller.destinations.length < 5)
                 ElevatedButton.icon(
                   icon: Icon(Icons.add),
-                  label: Text("Add Destination"),
+                  label: Text("add destination".tr),
                   onPressed: () => controller.addDestination(),
                 ),
             ],

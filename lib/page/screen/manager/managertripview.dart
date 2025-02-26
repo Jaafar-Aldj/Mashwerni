@@ -5,6 +5,7 @@ import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/core/function/translatedatabase.dart';
 import 'package:mashwerni/page/widget/manager/custommanagerdestination.dart';
 import 'package:mashwerni/page/widget/manager/custommanagertopproductdetails.dart';
+import 'package:mashwerni/page/widget/tripdetails/custombottomnavproductdetails.dart';
 
 class ManagerTripView extends StatelessWidget {
   const ManagerTripView({super.key});
@@ -14,6 +15,11 @@ class ManagerTripView extends StatelessWidget {
     ManagerTripViewControllerImp controller =
         Get.put(ManagerTripViewControllerImp());
     return Scaffold(
+      bottomNavigationBar: CustomBottomNavProductDetails(
+          title: "view passenger".tr,
+          onPressed: () {
+            controller.goToTripBooked();
+          }),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Column(

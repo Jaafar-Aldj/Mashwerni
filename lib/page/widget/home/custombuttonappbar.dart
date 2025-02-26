@@ -26,7 +26,7 @@ class CustomButtonAppBar extends StatelessWidget {
           ),
           Text(
             textButton,
-            style: TextStyle(color: color),
+            style: TextStyle(color: color, fontSize: 13),
           ),
         ],
       ),

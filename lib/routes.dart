@@ -22,6 +22,7 @@ import 'package:mashwerni/page/screen/language.dart';
 import 'package:mashwerni/page/screen/manager/addtrip.dart';
 import 'package:mashwerni/page/screen/manager/managerhomescreen.dart';
 import 'package:mashwerni/page/screen/manager/managertripview.dart';
+import 'package:mashwerni/page/screen/manager/tripbooked.dart';
 import 'package:mashwerni/page/screen/myfavorite.dart';
 import 'package:mashwerni/page/screen/onboarding.dart';
 import 'package:mashwerni/page/screen/tripdetails.dart';
@@ -72,4 +73,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.managerHomeScreen, page: () => ManagerHomeScreen()),
   GetPage(name: AppRoute.addTrip, page: () => AddTrip()),
   GetPage(name: AppRoute.managerTripView, page: () => ManagerTripView()),
+  GetPage(name: AppRoute.tripBooked, page: () => TripBooked()),
 ];

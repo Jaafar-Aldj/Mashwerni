@@ -5,7 +5,6 @@ import 'package:mashwerni/core/class/handlingdataview.dart';
 import 'package:mashwerni/core/constant/color.dart';
 import 'package:mashwerni/core/function/translatedatabase.dart';
 import 'package:mashwerni/data/model/itemsmodel.dart';
-import 'package:mashwerni/page/widget/customappbar.dart';
 import 'package:mashwerni/page/widget/mytrips/customlasttripscard.dart';
 import 'package:mashwerni/page/widget/mytrips/customtripcard.dart';
 
@@ -22,7 +21,6 @@ class ManagerMyTrips extends StatelessWidget {
           statusRequest: controller.statusRequest,
           widget: ListView(
             children: [
-              CustomAppBar(titleAppBar: ""),
               SizedBox(height: 10),
               Text(
                 "upcoming trips".tr,

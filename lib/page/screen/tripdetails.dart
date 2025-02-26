@@ -16,6 +16,7 @@ class TripDetails extends StatelessWidget {
     TripDetailControllerImp controller = Get.put(TripDetailControllerImp());
     return Scaffold(
       bottomNavigationBar: CustomBottomNavProductDetails(
+        title: "book".tr,
         onPressed: controller.book,
       ),
       body: SingleChildScrollView(
@@ -85,7 +86,7 @@ class TripDetails extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    "${"company".tr} ${controller.itemsModel.companyName}",
+                    "${"company".tr} ${translateDataBase(controller.itemsModel.companyNameAr, controller.itemsModel.companyName)}",
                     style: context.textTheme.bodyLarge?.copyWith(fontSize: 16),
                   ),
                   SizedBox(height: 10),

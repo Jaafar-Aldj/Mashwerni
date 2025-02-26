@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/controller/myfavoritecontroller.dart';
 import 'package:mashwerni/core/class/handlingdataview.dart';
-import 'package:mashwerni/page/widget/customappbar.dart';
 import 'package:mashwerni/page/widget/myfavorite/customfavoriteitemslist.dart';
 
 class MyFavorite extends StatelessWidget {
@@ -16,7 +15,6 @@ class MyFavorite extends StatelessWidget {
       child: GetBuilder<MyFavoriteControllerImp>(
         builder: (controller) => ListView(
           children: [
-            CustomAppBar(titleAppBar: "".tr),
             SizedBox(height: 20),
             HandlingDataView(
               statusRequest: controller.statusRequest,

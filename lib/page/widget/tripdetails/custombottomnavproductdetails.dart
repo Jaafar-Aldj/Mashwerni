@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:mashwerni/core/constant/color.dart';
 
 class CustomBottomNavProductDetails extends StatelessWidget {
   final void Function()? onPressed;
-  const CustomBottomNavProductDetails({super.key, required this.onPressed});
+  final String title;
+  const CustomBottomNavProductDetails(
+      {super.key, required this.onPressed, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CustomBottomNavProductDetails extends StatelessWidget {
         color: AppColor.primary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Text(
-          "book".tr,
+          title,
           style: TextStyle(
             color: AppColor.textAndIcon,
             fontWeight: FontWeight.bold,

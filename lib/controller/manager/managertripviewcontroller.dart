@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
+import 'package:mashwerni/core/constant/routes.dart';
 import 'package:mashwerni/core/function/handlingdatacontroller.dart';
 import 'package:mashwerni/core/service/services.dart';
 import 'package:mashwerni/data/datasource/remote/manager/manageritems.dart';
 
 abstract class ManagerTripViewController extends GetxController {
   changeImage();
+  goToTripBooked();
 }
 
 class ManagerTripViewControllerImp extends ManagerTripViewController {
@@ -46,5 +48,13 @@ class ManagerTripViewControllerImp extends ManagerTripViewController {
   @override
   changeImage() {
     update();
+  }
+
+  @override
+  goToTripBooked() {
+    Get.toNamed(
+      AppRoute.tripBooked,
+      arguments: {"trip_num": itemsModel.tripNum},
+    );
   }
 }

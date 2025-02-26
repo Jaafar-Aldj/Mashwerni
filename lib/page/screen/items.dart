@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mashwerni/controller/favoritecontroller.dart';
 import 'package:mashwerni/controller/itemscontroller.dart';
 import 'package:mashwerni/core/class/handlingdataview.dart';
+import 'package:mashwerni/page/screen/home.dart';
 import 'package:mashwerni/page/widget/customappbar.dart';
 import 'package:mashwerni/page/widget/items/customitemscategorieslist.dart';
 import 'package:mashwerni/page/widget/items/customitemslist.dart';
@@ -21,29 +22,43 @@ class ItemsPage extends StatelessWidget {
           builder: (controller) => ListView(
             children: [
               CustomAppBar(
-                titleAppBar: "",
+                myController: controller.search,
+                titleAppBar: "search for a trip".tr,
                 iconOnPressed: () {},
-                searchOnPressed: () {},
+                searchOnPressed: () {
+                  controller.onSearch();
+                },
+                onChanged: (val) {
+                  controller.checkSearch(val);
+                },
               ),
               SizedBox(height: 10),
-              CustomItemsCategoriesList(),
-              HandlingDataView(
-                statusRequest: controller.statusRequest,
-                widget: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, childAspectRatio: 0.8),
-                  itemCount: controller.items.length,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    favoriteController.setFavorite(
-                      controller.items[index].tripNum!,
-                      controller.items[index].favorite!,
-                    );
-                    return CustomItemsList(index: index);
-                  },
-                ),
-              ),
+              controller.isSearch
+                  ? ListSearchItems(listData: controller.searchDataModel)
+                  : Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CustomItemsCategoriesList(),
+                        HandlingDataView(
+                          statusRequest: controller.statusRequest,
+                          widget: GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2, childAspectRatio: 0.8),
+                            itemCount: controller.items.length,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              favoriteController.setFavorite(
+                                controller.items[index].tripNum!,
+                                controller.items[index].favorite!,
+                              );
+                              return CustomItemsList(index: index);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
             ],
           ),
         ),

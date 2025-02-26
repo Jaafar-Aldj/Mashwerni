@@ -167,6 +167,16 @@ class MyTranslation extends Translations {
           "seats left": "مقاعد متبقية :",
           "price :": "السعر :",
           "seats booked": "المقاعد المحجوزة :",
+          "add destinations": "أضف الوجهات",
+          "(english)": "(إنكليزي)",
+          "(arabic)": "(عربي)",
+          "add destination": "إضافة وجهة",
+          "days": "أيام",
+          "passenger": "الركاب",
+          "view passenger": "عرض الركاب",
+          "there are no registered passengers for this trip":
+              "لا يوجد ركاب مسجلين في هذه الرحلة",
+          "booked seats": "المقاعد المحجوزة",
         },
         "en": {
           "choose language": "Choose language",
@@ -331,6 +341,16 @@ class MyTranslation extends Translations {
           "price :": "Price :",
           "start location :": "Start Location :",
           "seats booked": "Seats Booked :",
+          "add destinations": "Add Destinations",
+          "(english)": "(English)",
+          "(arabic)": "(Arabic)",
+          "add destination": "Add Destination",
+          "days": "days",
+          "passenger": "Passenger",
+          "view passenger": "View Passenger",
+          "there are no registered passengers for this trip":
+              "There are no registered passengers for this trip",
+          "booked seats": "Booked Seats",
         },
       };
 }

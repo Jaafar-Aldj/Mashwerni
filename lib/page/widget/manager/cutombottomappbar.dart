@@ -11,28 +11,20 @@ class ManagerCustomBottomAppBarHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ManagerHomeScreenControllerImp>(
       builder: (controller) => BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 8,
         child: Row(
           children: [
             ...List.generate(
               controller.listPage.length,
               (index) => Expanded(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Spacer(),
-                    CustomButtonAppBar(
-                      icon: controller.listPage[index]['icon'],
-                      textButton: controller.listPage[index]['title'],
-                      onPressed: () {
-                        controller.changePage(index);
-                      },
-                      color: controller.currentPage == index
-                          ? AppColor.accent
-                          : AppColor.darkPrimary,
-                    ),
-                  ],
+                child: CustomButtonAppBar(
+                  icon: controller.listPage[index]['icon'],
+                  textButton: controller.listPage[index]['title'],
+                  onPressed: () {
+                    controller.changePage(index);
+                  },
+                  color: controller.currentPage == index
+                      ? AppColor.accent
+                      : AppColor.darkPrimary,
                 ),
               ),
             ),

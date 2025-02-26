@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
 import 'package:mashwerni/core/function/handlingdatacontroller.dart';
@@ -41,6 +42,7 @@ class TripDetailControllerImp extends TripDetailController {
 
   @override
   book() async {
+    // ignore: prefer_typing_uninitialized_variables
     var response;
     for (var i = 0; i < count; i++) {
       statusRequest = StatusRequest.loading;
@@ -57,6 +59,8 @@ class TripDetailControllerImp extends TripDetailController {
           "done".tr,
           snackPosition: SnackPosition.BOTTOM,
         );
+        FirebaseMessaging.instance
+            .subscribeToTopic("trip${itemsModel.tripNum}");
       } else {
         statusRequest = StatusRequest.failure;
       }

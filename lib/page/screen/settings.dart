@@ -57,12 +57,6 @@ class Settings extends StatelessWidget {
                 Divider(color: AppColor.divider),
                 ListTile(
                   onTap: () {},
-                  title: Text("address".tr),
-                  trailing: Icon(Icons.location_on_outlined),
-                ),
-                Divider(color: AppColor.divider),
-                ListTile(
-                  onTap: () {},
                   title: Text("about us".tr),
                   trailing: Icon(Icons.info_outline),
                 ),
