@@ -2,16 +2,16 @@ List<Map<String, String>> adminNumbers = [
   {
     "name": "Jaafar",
     "name_ar": "جعفر",
-    "number": "0995062255",
+    "number": "0995062288",
   },
   {
     "name": "Hakam",
     "name_ar": "حكم",
-    "number": "0994561231",
+    "number": "0994383871",
   },
   {
     "name": "Amr",
     "name_ar": "عمرو",
-    "number": "0928445831",
+    "number": "0982412660",
   },
 ];

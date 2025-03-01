@@ -177,6 +177,9 @@ class MyTranslation extends Translations {
           "there are no registered passengers for this trip":
               "لا يوجد ركاب مسجلين في هذه الرحلة",
           "booked seats": "المقاعد المحجوزة",
+          "image limit": "حد الصور",
+          "you can only pick five images": "يمكنك اختيار خمس صور فقط",
+          "you should add one image at least": "يجب اضافة صورة على الأقل",
         },
         "en": {
           "choose language": "Choose language",
@@ -351,6 +354,10 @@ class MyTranslation extends Translations {
           "there are no registered passengers for this trip":
               "There are no registered passengers for this trip",
           "booked seats": "Booked Seats",
+          "image limit": "Image Limit",
+          "you can only pick five images": "You can only pick five images",
+          "you should add one image at least":
+              "You should add one image at least",
         },
       };
 }

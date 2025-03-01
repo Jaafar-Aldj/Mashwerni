@@ -15,7 +15,7 @@ abstract class TripDetailController extends GetxController {
 
 class TripDetailControllerImp extends TripDetailController {
   late ItemsModel itemsModel;
-  int count = 0;
+  int count = 1;
   MyServices myServices = Get.find();
   StatusRequest? statusRequest;
   ItemsData itemsData = ItemsData(Get.find());
@@ -34,7 +34,7 @@ class TripDetailControllerImp extends TripDetailController {
 
   @override
   remove() {
-    if (count > 0) {
+    if (count > 1) {
       count--;
     }
     update();

@@ -118,6 +118,52 @@ class AddTrip extends StatelessWidget {
               ManagerCustomTripLongChoose(),
               ManagerCustomCategoriesChoose(),
               CustomPassengerSlider(),
+              SizedBox(height: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("أضف صور الرحلة",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 10),
+
+                  // زر اختيار الصور
+                  ElevatedButton.icon(
+                    onPressed: controller.pickImages,
+                    icon: Icon(Icons.add_a_photo),
+                    label: Text("اختر الصور"),
+                  ),
+
+                  SizedBox(height: 10),
+
+                  // عرض الصور المختارة
+                  GetBuilder<AddTripControllerImp>(
+                    builder: (controller) => Wrap(
+                      spacing: 10,
+                      children: List.generate(
+                        controller.tripImages.length,
+                        (index) {
+                          return Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              Image.file(
+                                controller.tripImages[index],
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.cancel, color: Colors.red),
+                                onPressed: () => controller.removeImage(index),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               CustomButtonAuth(
                 text: "confirm".tr,
                 onPressed: () {

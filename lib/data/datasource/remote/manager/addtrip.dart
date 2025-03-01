@@ -6,22 +6,24 @@ class AddTripData {
   Crud crud;
   AddTripData(this.crud);
 
-  postData(
-      {required String managerID,
-      required String title,
-      required String titleAr,
-      required String description,
-      required String descriptionAr,
-      required String startLocation,
-      required String startLocationAr,
-      required String categoryID,
-      required String startDate,
-      required String tripLong,
-      required String maxPassengers,
-      required String cost,
-      required List<Map<String, TextEditingController>> destinations,
-      required}) async {
+  postData({
+    required String managerID,
+    required String title,
+    required String titleAr,
+    required String description,
+    required String descriptionAr,
+    required String startLocation,
+    required String startLocationAr,
+    required String categoryID,
+    required String startDate,
+    required String tripLong,
+    required String maxPassengers,
+    required String cost,
+    required List<Map<String, TextEditingController>> destinations,
+    required List<String> images,
+  }) async {
     Map<String, String> destinationData = {};
+    Map<String, String> imagesData = {};
     for (int i = 0; i < destinations.length; i++) {
       String locationEn = destinations[i]["english"]?.text ?? "";
       String locationAr = destinations[i]["arabic"]?.text ?? "";
@@ -34,6 +36,12 @@ class AddTripData {
     for (int i = destinationData.length - 1; i < 5; i++) {
       destinationData["location_${i + 1}"] = "";
       destinationData["location_${i + 1}_ar"] = "";
+    }
+    for (int i = 0; i < images.length; i++) {
+      destinationData["image_${i + 1}"] = images[i];
+    }
+    for (int i = destinationData.length - 1; i < 5; i++) {
+      destinationData["image_${i + 1}"] = "";
     }
 
     var response = await crud.postData(AppLink.addTrip, {
@@ -50,6 +58,7 @@ class AddTripData {
       "max_passengers": maxPassengers,
       "cost": cost,
       ...destinationData,
+      ...imagesData,
     });
     return response.fold((l) => l, (r) => r);
   }

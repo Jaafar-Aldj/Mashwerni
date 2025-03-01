@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:mashwerni/controller/manager/homescreencontroller.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
@@ -8,6 +11,8 @@ import 'package:mashwerni/core/function/handlingdatacontroller.dart';
 import 'package:mashwerni/core/service/services.dart';
 import 'package:mashwerni/data/datasource/remote/manager/addtrip.dart';
 import 'package:mashwerni/data/model/categoriesmodel.dart';
+import 'package:mashwerni/linkapi.dart';
+import 'package:http/http.dart' as http;
 
 abstract class AddTripController extends GetxController {
   addTrip();
@@ -55,6 +60,8 @@ class AddTripControllerImp extends AddTripController {
         .map((category) => category)
         .toList();
   }
+
+  List<File> tripImages = [];
 
   @override
   void onInit() {
@@ -112,7 +119,10 @@ class AddTripControllerImp extends AddTripController {
     if (formData == null || !formData.validate()) {
       return;
     }
-
+    if (tripImages.isEmpty) {
+      Get.snackbar("error".tr, "you should add one image at least".tr);
+      return;
+    }
     if (!isSelectionValid()) {
       Get.snackbar(
         "error".tr,
@@ -130,6 +140,7 @@ class AddTripControllerImp extends AddTripController {
       return;
     }
     statusRequest = StatusRequest.loading;
+    List<String> imageNames = await uploadAllImages();
     var response = await addTripData.postData(
       managerID: myServices.sharedPreferences.getInt("manager_id").toString(),
       title: title.text,
@@ -144,6 +155,7 @@ class AddTripControllerImp extends AddTripController {
       startDate: startDate.toString(),
       tripLong: tripLong.toString(),
       destinations: destinations,
+      images: imageNames,
     );
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
@@ -267,5 +279,71 @@ class AddTripControllerImp extends AddTripController {
     } else {
       Get.snackbar("Minimum Reached", "You must have at least 1 destination.");
     }
+  }
+
+  Future<void> pickImages() async {
+    final ImagePicker picker = ImagePicker();
+    // ignore: unnecessary_nullable_for_final_variable_declarations
+    final List<XFile>? pickedFiles = await picker.pickMultiImage();
+
+    if (pickedFiles != null) {
+      if (pickedFiles.length + tripImages.length > 5) {
+        Get.snackbar("image limit".tr, "you can only pick five images".tr);
+        return;
+      }
+
+      for (var file in pickedFiles) {
+        tripImages.add(File(file.path));
+      }
+      update();
+    }
+  }
+
+  Future<String?> uploadImage(File imageFile) async {
+    try {
+      String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
+      String fileName = "${timestamp}_${imageFile.path.split('/').last}";
+
+      var request =
+          http.MultipartRequest("POST", Uri.parse(AppLink.imageItems));
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'image',
+          imageFile.path,
+          filename: fileName, // استخدام الاسم الجديد
+        ),
+      );
+
+      var response = await request.send();
+      if (response.statusCode == 200) {
+        var responseData = await response.stream.bytesToString();
+        return responseData; // اسم الصورة المرفوعة
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print("خطأ في رفع الصورة: $e");
+      return null;
+    }
+  }
+
+  Future<List<String>> uploadAllImages() async {
+    List<String> imageNames = [];
+
+    for (var image in tripImages) {
+      String? imageName = await uploadImage(image);
+      if (imageName != null) {
+        imageNames.add(imageName);
+      } else {
+        Get.snackbar("خطأ", "تعذر رفع بعض الصور!");
+      }
+    }
+    print(imageNames);
+    return imageNames;
+  }
+
+  void removeImage(int index) {
+    tripImages.removeAt(index);
+    update();
   }
 }
