@@ -11,7 +11,6 @@ import 'package:mashwerni/core/function/handlingdatacontroller.dart';
 import 'package:mashwerni/core/service/services.dart';
 import 'package:mashwerni/data/datasource/remote/manager/addtrip.dart';
 import 'package:mashwerni/data/model/categoriesmodel.dart';
-import 'package:mashwerni/linkapi.dart';
 import 'package:http/http.dart' as http;
 
 abstract class AddTripController extends GetxController {
@@ -43,7 +42,7 @@ class AddTripControllerImp extends AddTripController {
   late TextEditingController cost;
   String rawCostValue = "";
   DateTime? startDate;
-  int maxPassengers = 5;
+  int maxPassengers = 25;
   int tripLong = 1;
   List<Map<String, TextEditingController>> destinations = [
     {
@@ -62,6 +61,7 @@ class AddTripControllerImp extends AddTripController {
   }
 
   List<File> tripImages = [];
+  String serverUrl = "http://10.0.2.2:8000/mashwerni/upload/items";
 
   @override
   void onInit() {
@@ -114,60 +114,73 @@ class AddTripControllerImp extends AddTripController {
   }
 
   @override
+  @override
   addTrip() async {
     var formData = key.currentState;
     if (formData == null || !formData.validate()) {
       return;
     }
     if (tripImages.isEmpty) {
-      Get.snackbar("error".tr, "you should add one image at least".tr);
+      Get.snackbar("خطأ", "يجب إضافة صورة واحدة على الأقل");
       return;
     }
     if (!isSelectionValid()) {
-      Get.snackbar(
-        "error".tr,
-        "please choose one category at least".tr,
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      Get.snackbar("خطأ", "يرجى اختيار فئة واحدة على الأقل");
       return;
     }
     if (startDate == null) {
-      Get.snackbar(
-        "error".tr,
-        "please select a start date".tr,
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      Get.snackbar("خطأ", "يرجى تحديد تاريخ البدء");
       return;
     }
+
     statusRequest = StatusRequest.loading;
-    List<String> imageNames = await uploadAllImages();
-    var response = await addTripData.postData(
-      managerID: myServices.sharedPreferences.getInt("manager_id").toString(),
-      title: title.text,
-      titleAr: titleAr.text,
-      description: description.text,
-      descriptionAr: descriptionAr.text,
-      startLocation: startLocation.text,
-      startLocationAr: startLocationAr.text,
-      categoryID: selectedCategory.first.categoryID.toString(),
-      cost: rawCostValue,
-      maxPassengers: maxPassengers.toString(),
-      startDate: startDate.toString(),
-      tripLong: tripLong.toString(),
-      destinations: destinations,
-      images: imageNames,
-    );
-    statusRequest = handlingData(response);
-    if (statusRequest == StatusRequest.success) {
-      if (response['status'] == "success") {
-        var tripNum = response['trip_num'];
-        FirebaseMessaging.instance.subscribeToTopic("trip$tripNum");
-        controller.changePage(3);
-        Get.delete<AddTripControllerImp>();
-      } else {
+    update();
+
+    try {
+      List<String> imageNames = await uploadAllImages();
+
+      if (imageNames.isEmpty) {
+        Get.snackbar("خطأ", "لم يتم رفع أي صورة، حاول مرة أخرى");
         statusRequest = StatusRequest.failure;
+        update();
+        return;
       }
+
+      var response = await addTripData.postData(
+        managerID: myServices.sharedPreferences.getInt("manager_id").toString(),
+        title: title.text,
+        titleAr: titleAr.text,
+        description: description.text,
+        descriptionAr: descriptionAr.text,
+        startLocation: startLocation.text,
+        startLocationAr: startLocationAr.text,
+        categoryID: selectedCategory.first.categoryID.toString(),
+        cost: rawCostValue,
+        maxPassengers: maxPassengers.toString(),
+        startDate: startDate.toString(),
+        tripLong: tripLong.toString(),
+        destinations: destinations,
+        images: imageNames, // هنا يتم إرسال جميع الصور كقائمة
+      );
+
+      statusRequest = handlingData(response);
+
+      if (statusRequest == StatusRequest.success) {
+        if (response['status'] == "success") {
+          var tripNum = response['trip_num'];
+          FirebaseMessaging.instance.subscribeToTopic("trip$tripNum");
+          controller.changePage(3);
+          Get.delete<AddTripControllerImp>();
+        } else {
+          statusRequest = StatusRequest.failure;
+        }
+      }
+    } catch (e) {
+      print("خطأ في إرسال الرحلة: $e");
+      Get.snackbar("خطأ", "حدث خطأ أثناء رفع الرحلة");
+      statusRequest = StatusRequest.failure;
     }
+
     update();
   }
 
@@ -304,21 +317,19 @@ class AddTripControllerImp extends AddTripController {
       String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
       String fileName = "${timestamp}_${imageFile.path.split('/').last}";
 
-      var request =
-          http.MultipartRequest("POST", Uri.parse(AppLink.imageItems));
-      request.files.add(
-        await http.MultipartFile.fromPath(
-          'image',
-          imageFile.path,
-          filename: fileName, // استخدام الاسم الجديد
-        ),
-      );
+      var request = http.MultipartRequest("POST", Uri.parse(serverUrl));
+      request.files.add(await http.MultipartFile.fromPath(
+        'image',
+        imageFile.path,
+        filename: fileName,
+      ));
 
       var response = await request.send();
       if (response.statusCode == 200) {
-        var responseData = await response.stream.bytesToString();
-        return responseData; // اسم الصورة المرفوعة
+        await response.stream.bytesToString();
+        return fileName; // تأكد من إرجاع اسم الملف الذي تم رفعه
       } else {
+        print("فشل رفع الصورة: ${response.statusCode}");
         return null;
       }
     } catch (e) {
@@ -338,7 +349,8 @@ class AddTripControllerImp extends AddTripController {
         Get.snackbar("خطأ", "تعذر رفع بعض الصور!");
       }
     }
-    print(imageNames);
+
+    print("الصور المرفوعة: $imageNames");
     return imageNames;
   }
 

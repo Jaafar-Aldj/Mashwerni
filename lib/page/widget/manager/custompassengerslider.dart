@@ -17,9 +17,9 @@ class CustomPassengerSlider extends GetView<AddTripControllerImp> {
         ),
         Slider(
           value: controller.maxPassengers.toDouble(),
-          min: 5,
-          max: 500,
-          divisions: 495,
+          min: 25,
+          max: 150,
+          divisions: 125,
           inactiveColor: AppColor.lightPrimary,
           activeColor: AppColor.darkPrimary,
           label: "${controller.maxPassengers.toInt()}",

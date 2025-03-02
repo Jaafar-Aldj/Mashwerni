@@ -31,6 +31,7 @@ class AppLink {
   static const String searchItems = "$server/trip/search.php";
   static const String categories = "$server/categories/view.php";
   static const String myTrips = "$server/mytrips/user_mytrips.php";
+  static const String profile = "$server/profile/user_view.php";
 
   // Favorite
   static const String addFav = "$server/trip/add_favorite.php";
@@ -48,4 +49,5 @@ class AppLink {
       "$server/booking/count_to_manager.php";
   static const String managerMyTrips = "$server/mytrips/manager_mytrips.php";
   static const String tripBooked = "$server/mytrips/trip_booked.php";
+  static const String managerProfile = "$server/profile/manager_view.php";
 }
