@@ -6,8 +6,8 @@ class ProfileData {
   ProfileData(this.crud);
 
   getData(int userID) async {
-    var response =
-        await crud.postData(AppLink.profile, {'user_id': userID.toString()});
+    var response = await crud
+        .postData(AppLink.profile, {"user_id": userID.toString()});
     return response.fold((l) => l, (r) => r);
   }
 }

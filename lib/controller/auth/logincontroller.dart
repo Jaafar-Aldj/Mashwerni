@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/core/class/statusrequest.dart';
@@ -95,10 +94,6 @@ class LoginControllerImp extends LoginController {
 
   @override
   void onInit() {
-    FirebaseMessaging.instance.getToken().then((value) {
-      // ignore: unused_local_variable
-      String? token = value;
-    });
     email = TextEditingController();
     password = TextEditingController();
     super.onInit();

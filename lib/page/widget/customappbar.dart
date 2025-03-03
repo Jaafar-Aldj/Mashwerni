@@ -4,14 +4,12 @@ import 'package:mashwerni/core/constant/color.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String titleAppBar;
-  final void Function()? iconOnPressed;
   final void Function()? searchOnPressed;
   final void Function(String)? onChanged;
   final TextEditingController myController;
   const CustomAppBar({
     super.key,
     required this.titleAppBar,
-    this.iconOnPressed,
     this.searchOnPressed,
     this.onChanged,
     required this.myController,
@@ -43,15 +41,6 @@ class CustomAppBar extends StatelessWidget {
                 fillColor: AppColor.lightPrimary,
               ),
             ),
-          ),
-          IconButton(
-            color: AppColor.primary,
-            iconSize: 35,
-            icon: Icon(
-              Icons.notifications_active_outlined,
-              color: AppColor.darkPrimary,
-            ),
-            onPressed: iconOnPressed,
           ),
         ],
       ),

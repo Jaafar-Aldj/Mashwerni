@@ -180,6 +180,8 @@ class MyTranslation extends Translations {
           "image limit": "حد الصور",
           "you can only pick five images": "يمكنك اختيار خمس صور فقط",
           "you should add one image at least": "يجب اضافة صورة على الأقل",
+          "trips from": "رحل من",
+          "other trips": "رحلات أخرى",
         },
         "en": {
           "choose language": "Choose language",
@@ -358,6 +360,8 @@ class MyTranslation extends Translations {
           "you can only pick five images": "You can only pick five images",
           "you should add one image at least":
               "You should add one image at least",
+          "trips from": "Trips From",
+          "other trips": "Other Trips",
         },
       };
 }

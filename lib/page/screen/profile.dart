@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mashwerni/controller/profilecontroller.dart';
 import 'package:mashwerni/core/class/handlingdataview.dart';
+import 'package:mashwerni/core/constant/imageasset.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -9,65 +10,56 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileController());
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: GetBuilder<ProfileController>(
-        builder: (controller) => HandlingDataView(
-          statusRequest: controller.statusRequest,
-          widget: Column(
-            children: [
-              // صورة الملف الشخصي
-              CircleAvatar(
-                radius: 50,
-                backgroundImage:
-                    AssetImage("assets/images/default_profile.png"),
-                // يمكن تغيير الصورة لاحقًا بناءً على بيانات المستخدم
-              ),
-              const SizedBox(height: 16),
-
-              // اسم المستخدم
-              Text(
-                "${controller.user[0].fName ?? ''} ${controller.user[0].lName ?? ''}",
-                style:
-                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-
-              // البريد الإلكتروني
-              Text(
-                controller.user[0].email ?? "No Email",
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              const SizedBox(height: 16),
-
-              // بيانات المستخدم في بطاقات
-              Expanded(
-                child: ListView(
-                  children: [
-                    _buildProfileTile(Icons.phone, "phone".tr,
-                        controller.user[0].phone ?? "N/A"),
-                    _buildProfileTile(Icons.location_on, "location".tr,
-                        controller.user[0].location ?? "N/A"),
-                    _buildProfileTile(
-                        Icons.calendar_today,
-                        "trip_long_favorite".tr,
-                        controller.user[0].tripLongFavorite ?? "N/A"),
-                    _buildProfileTile(Icons.person_outline, "account_id".tr,
-                        controller.user[0].accountId.toString()),
-                  ],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GetBuilder<ProfileController>(
+          builder: (controller) => HandlingDataView(
+            statusRequest: controller.statusRequest,
+            widget: Column(
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage(AppImageAsset.avatar),
                 ),
-              ),
-
-              // زر تعديل البيانات (اختياري)
-              ElevatedButton.icon(
-                onPressed: () {
-                  // يمكن تنفيذ منطق تعديل البيانات هنا
-                  Get.snackbar("تنبيه", "ميزة التعديل ستتم إضافتها قريبًا!");
-                },
-                icon: const Icon(Icons.edit),
-                label: const Text("Edit Profile"),
-              ),
-            ],
+                const SizedBox(height: 16),
+                Text(
+                  "${controller.user.fName!} ${controller.user.lName!}",
+                  style: const TextStyle(
+                      fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  controller.user.email!,
+                  style: const TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+                const SizedBox(height: 16),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        _buildProfileTile(
+                            Icons.phone, "phone".tr, controller.user.phone!),
+                        _buildProfileTile(Icons.location_on, "location".tr,
+                            controller.user.location!),
+                        _buildProfileTile(
+                            Icons.calendar_today,
+                            "trip duration you prefer".tr,
+                            controller.user.tripLongFavorite!),
+                      ],
+                    ),
+                  ),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    // يمكن تنفيذ منطق تعديل البيانات هنا
+                    Get.snackbar("تنبيه", "ميزة التعديل ستتم إضافتها قريبًا!");
+                  },
+                  icon: const Icon(Icons.edit),
+                  label: const Text("Edit Profile"),
+                ),
+              ],
+            ),
           ),
         ),
       ),

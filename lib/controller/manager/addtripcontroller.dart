@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -167,8 +166,6 @@ class AddTripControllerImp extends AddTripController {
 
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          var tripNum = response['trip_num'];
-          FirebaseMessaging.instance.subscribeToTopic("trip$tripNum");
           controller.changePage(3);
           Get.delete<AddTripControllerImp>();
         } else {

@@ -7,8 +7,8 @@ import 'package:mashwerni/data/model/userprofilemodel.dart';
 
 class ProfileController extends GetxController {
   ProfileData profileData = ProfileData(Get.find());
-  List<UserProfileModel> user = [];
-  late StatusRequest statusRequest;
+  late UserProfileModel user = UserProfileModel();
+  StatusRequest? statusRequest;
   MyServices myServices = Get.find();
 
   getData() async {
@@ -20,8 +20,7 @@ class ProfileController extends GetxController {
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        List responseData = response['data'];
-        user.addAll(responseData.map((e) => UserProfileModel.fromJson(e)));
+        user = UserProfileModel.fromJson(response['data']);
       } else {
         statusRequest = StatusRequest.failure;
       }

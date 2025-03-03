@@ -8,7 +8,6 @@ import 'package:mashwerni/data/model/itemsmodel.dart';
 import 'package:mashwerni/linkapi.dart';
 import 'package:mashwerni/page/widget/customappbar.dart';
 import 'package:mashwerni/page/widget/home/customcategorieslist.dart';
-import 'package:mashwerni/page/widget/home/customhomecard.dart';
 import 'package:mashwerni/page/widget/home/customitemslisthome.dart';
 import 'package:mashwerni/page/widget/home/customtitlehome.dart';
 
@@ -26,7 +25,6 @@ class Home extends StatelessWidget {
             CustomAppBar(
               myController: controller.search,
               titleAppBar: "search for a trip".tr,
-              iconOnPressed: () {},
               searchOnPressed: () {
                 controller.onSearch();
               },
@@ -41,16 +39,17 @@ class Home extends StatelessWidget {
                   : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomHomeCard(
-                          title: "summer suprise".tr,
-                          body: "cashback 20%".tr,
-                        ),
                         CustomTitleHome(title: "categories".tr),
                         CustomCategoriesList(),
                         CustomTitleHome(title: "trips for you".tr),
-                        CustomItemsListHome(),
-                        CustomTitleHome(title: "offers".tr),
-                        CustomItemsListHome(),
+                        CustomItemsListHome(
+                            itemsList: controller.suggestedTrips),
+                        CustomTitleHome(
+                            title:
+                                "${"trips from".tr} ${translateDataBase(controller.locationAr, controller.location)}"),
+                        CustomItemsListHome(itemsList: controller.tripsFrom),
+                        CustomTitleHome(title: "other trips".tr),
+                        CustomItemsListHome(itemsList: controller.items),
                       ],
                     ),
             ),

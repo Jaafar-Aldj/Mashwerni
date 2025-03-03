@@ -24,7 +24,6 @@ class ItemsPage extends StatelessWidget {
               CustomAppBar(
                 myController: controller.search,
                 titleAppBar: "search for a trip".tr,
-                iconOnPressed: () {},
                 searchOnPressed: () {
                   controller.onSearch();
                 },

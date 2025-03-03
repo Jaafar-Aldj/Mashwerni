@@ -50,12 +50,6 @@ class Settings extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ListTile(
-                  // onTap: () {},
-                  title: Text("disable notifications".tr),
-                  trailing: Switch(value: true, onChanged: (value) {}),
-                ),
-                Divider(color: AppColor.divider),
-                ListTile(
                   onTap: () {},
                   title: Text("about us".tr),
                   trailing: Icon(Icons.info_outline),

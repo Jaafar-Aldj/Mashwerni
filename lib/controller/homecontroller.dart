@@ -22,12 +22,17 @@ class HomeControllerImp extends HomeController {
   int? userID;
   HomeData homeData = HomeData(Get.find());
   List<CategoriesModel> categories = [];
-  List items = [];
+  List<ItemsModel> items = [];
+  List<ItemsModel> suggestedTrips = [];
+  List<ItemsModel> tripsFrom = [];
+  late String location = "";
+  late String locationAr = "";
 
   @override
   getData() async {
     statusRequest = StatusRequest.loading;
-    var response = await homeData.getData();
+    var response =
+        await homeData.getData(myServices.sharedPreferences.getInt("user_id")!);
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
@@ -35,10 +40,22 @@ class HomeControllerImp extends HomeController {
         categories
             .addAll(categoriesResponse.map((e) => CategoriesModel.fromJson(e)));
         if (response['items'] is! String) {
-          // List itemsResponse = response['items'];
-          //   items.addAll(itemsResponse.map((e)=>ItemsModel.fromJson(e)));s
-          items.addAll(response['items']);
+          List itemsResponse = response['items'] ?? [];
+          items.addAll(itemsResponse.map((e) => ItemsModel.fromJson(e)));
         }
+        if (response['suggested_trips'] != null) {
+          List suggestedTripsResponse = response['suggested_trips'] ?? [];
+          suggestedTrips.addAll(
+              suggestedTripsResponse.map((e) => ItemsModel.fromJson(e)));
+        }
+        if (response['trips_from'] != null) {
+          List tripsFromResponse = response['trips_from'] ?? [];
+          tripsFrom
+              .addAll(tripsFromResponse.map((e) => ItemsModel.fromJson(e)));
+        }
+
+        location = response['location'];
+        locationAr = response['location_ar'];
       } else {
         statusRequest = StatusRequest.failure;
       }
